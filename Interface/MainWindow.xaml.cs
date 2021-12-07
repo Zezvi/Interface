@@ -1,28 +1,52 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
+﻿using System.Windows;
+using PetShop.Models;
+using PetShop.Views.CheckView;
+using PetShop.Views.GoodsView;
 
-namespace Interface
+namespace PetShop
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
     {
-        public MainWindow()
+        User current;
+        public MainWindow(User user)
         {
             InitializeComponent();
+            current = user;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            GoodsList goodsList = new GoodsList(current);
+            goodsList.ShowDialog();
+        }
+
+        private void btnSupplier_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnGoods_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnActions_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnBonus_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void btnCheck_Click(object sender, RoutedEventArgs e)
+        {
+            CheckList view = new CheckList();
+            view.ShowDialog();
         }
     }
 }

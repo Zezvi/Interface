@@ -1,0 +1,20 @@
+﻿<Window x:Class="PetShop.Views.GoodsView.GoodsList"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PetShop.Views.GoodsView"
+        mc:Ignorable="d"
+        Title="GoodsList" Height="450" Width="800">
+    <Grid>
+        <Button x:Name="btnGoodsList" Content="Оформить покупку" HorizontalAlignment="Left" Margin="35,256,0,0" VerticalAlignment="Top" Width="130" Click="btnGoodsList_Click"/>
+        <DataGrid SelectionMode="Single" x:Name="goodsgrid" IsReadOnly="True" VerticalAlignment="Top" AutoGenerateColumns="True" Margin="0,10,0,0" MouseDoubleClick="goodsgrid_MouseDoubleClick"/>
+        <ListBox x:Name="lxdisplaySelected" Margin="329,250,57,50" />
+        <Button x:Name="btnClearSelected" Content="Сбросить выбранное" HorizontalAlignment="Left" Margin="35,307,0,0" VerticalAlignment="Top" Width="130" Click="btnClearSelected_Click"/>
+
+        <!--<TextBlock Height="100" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0.4,0" Padding="30" Foreground="Linen" Background="Linen" Text="3500" FontSize="30" Width="294" />
+        <Button  Height="62"  VerticalAlignment="Top" Foreground="White" Background="Coral" Margin="0,0,0.4,0">Картой</Button>
+        <Button Height="53" VerticalAlignment="Top" Foreground="White" Background="Coral" Margin="0,0,0.4,0">Наличными</Button>-->
+
+    </Grid>
+</Window>

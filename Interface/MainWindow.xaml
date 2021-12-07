@@ -1,82 +1,18 @@
-﻿<Window x:Class="Interface.MainWindow"
+﻿<Window x:Class="PetShop.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Interface"
+        xmlns:local="clr-namespace:PetShop"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
-    <Grid Background="#FFDADADA">
-        
-        <Grid.RowDefinitions>
-            <RowDefinition/>
-            <RowDefinition Height="207*"/>
-        </Grid.RowDefinitions>
-        <TextBox MaxLength="250" Height="20" TextAlignment="Center" VerticalAlignment="Top" Foreground="Black" Background="Coral" Margin="0,0,0,0" Grid.RowSpan="2" >Чек</TextBox>
-
-        <DataGrid AutoGenerateColumns="False"
-             
-Height="217"
-HorizontalAlignment="Left"
-Name="dataGrid1"
-VerticalAlignment="Top"
- Margin="0,16.4,0,0"
-   Width="500" Grid.Row="1">
-            <DataGrid.Columns >
-                <DataGridTextColumn Header="Наименование" MinWidth="250" />
-                <DataGridComboBoxColumn Header="Кол-во" MinWidth="20" />
-                <DataGridTextColumn Header="Цена" MinWidth="90" />
-                <DataGridTextColumn Header="Сумма" MinWidth="104" />
-            </DataGrid.Columns>
-            <DataGrid.Items >
-                Title="Корм" Quantatity="1" Price= "1000" Sum="1000"
-
-            </DataGrid.Items>
-        </DataGrid>
-
-        <ScrollViewer CanContentScroll="True" Margin="0,247.6,485.6,34" Grid.Row="1">
-            <StackPanel x:Name="RightPanel"
-      HorizontalAlignment="Left"
-      VerticalAlignment="Top"
-      Margin="0,0,0,0"
-            ScrollViewer.HorizontalScrollBarVisibility="Visible"
-            ScrollViewer.VerticalScrollBarVisibility="Visible">
-
-                <TextBlock Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Наименование                  Корм Primordial" />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Количество                                 1" />
-                <TextBlock Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Скидка                                         0" />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Цена                                         2000" Width="292"/>
-                <TextBlock Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background=" Linen" Text="Наименование                   Корм Econoba" />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Количество                                 1" />
-                <TextBlock Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Скидка                                         0" />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Цена                                          1500"/>
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Списано бонусов                        0" />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Начислено бонусов                   90"/>
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="СУММА                                     2500" />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Кассир                                   Орешкин А.П." />
-                <TextBlock  Height="20" TextAlignment="Left" VerticalAlignment="Top" Foreground="Black" Background="Linen" Text="Дата                                      10.05.2001" />
-
-            </StackPanel>
-        </ScrollViewer>
-        <StackPanel x:Name="LeftPanel"
-      HorizontalAlignment="Left"
-      VerticalAlignment="Top"
-      Margin="500,18.4,-0.4,0" Grid.Row="1" Width="294">
-            <TextBlock Height="100" TextAlignment="Center" HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="0,0,0.4,0" Padding="30" Foreground="Black" Background="Linen" Text="3500" FontSize="30" Width="294" />
-            <Button  Height="62"  VerticalAlignment="Top" Foreground="White" Background="Coral" Margin="0,0,0.4,0">Картой</Button>
-            <Button Height="53" VerticalAlignment="Top" Foreground="White" Background="Coral" Margin="0,0,0.4,0">Наличными</Button>
-        </StackPanel>
-
-        <!--<StackPanel x:Name="LeftPanel2"
-      HorizontalAlignment="Left"
-      VerticalAlignment="Top"
-      Margin="500,300.4,0,0" Grid.Row="1" Width="211">
-            <Button  Height="50"  VerticalAlignment="Top" Foreground="White" Background="BurlyWood">Картой</Button>
-            <Button Height="50" VerticalAlignment="Top" Foreground="White" Background="BurlyWood">Наличными</Button>
-        </StackPanel>-->
-
-        <Button Margin="433,263.6,72.6,0" Height="59"  VerticalAlignment="Top" Foreground="White" Background="Coral" Grid.Row="1">Ввод карты</Button>
-        <Button Margin="433,342.6,72.6,0" Height="53" VerticalAlignment="Top" Foreground="White" Background="Coral" Grid.Row="1">Создание карты</Button>
+        Title="Меню" Height="310" Width="252">
+    <Grid Background="GreenYellow"  Margin="0,0,2,3">
+        <Button Content="Оформление покупки" HorizontalAlignment="Left" Margin="12,9,0,0" VerticalAlignment="Top" Click="Button_Click" Width="212"/>
+        <Button Content="Поставщики" x:Name="btnSupplier" HorizontalAlignment="Left" Margin="12,48,0,0" VerticalAlignment="Top" Width="212" Click="btnSupplier_Click" RenderTransformOrigin="1.28,2.15"/>
+        <Button Content="Товары" x:Name="btnGoods" HorizontalAlignment="Left" Margin="12,89,0,0" VerticalAlignment="Top" Width="212" Click="btnGoods_Click"/>
+        <Button Content="Скидки" x:Name="btnActions" HorizontalAlignment="Left" Margin="12,132,0,0" VerticalAlignment="Top" Width="212" Click="btnActions_Click"/>
+        <Button Content="Бонусные карты" x:Name="btnBonus" HorizontalAlignment="Left" Margin="12,173,0,0" VerticalAlignment="Top" Width="212" Click="btnBonus_Click"/>
+        <Button Content="Продажи" x:Name="btnCheck" HorizontalAlignment="Left" Margin="12,212,0,0" VerticalAlignment="Top" Click="btnCheck_Click" Width="212"/>
 
     </Grid>
 </Window>
