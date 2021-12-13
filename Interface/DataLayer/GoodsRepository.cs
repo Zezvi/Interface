@@ -2,25 +2,23 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetShop.DataLayer
 {
-    class UserLayer
+    class GoodsRepository
     {
         PetShopContext context;
-        public UserLayer()
+        public GoodsRepository()
         {
             context = new PetShopContext();
         }
 
-        public void Add(User model)
+        public void Add(Good good)
         {
 
             try
             {
-                context.User.Add(model);
+                context.Good.Add(good);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -28,45 +26,45 @@ namespace PetShop.DataLayer
                 string str = ex.Message;
             }
         }
-        public List<User> Get()
+        public List<Good> Get()
         {
 
-            List<User> models = new List<User>();
+            List<Good> goods = new List<Good>();
             using (PetShopContext ctx = new PetShopContext())
             {
                 try
                 {
-                    models = ctx.User.ToList<User>();
+                    goods = ctx.Good.ToList<Good>();
 
                 }
                 catch
                 {
-                    models = null;
+                    goods = null;
                 }
             }
 
-            return models;
+            return goods;
         }
-        public User GetOne(int? Id)
+        public Good GetOne(int Id)
         {
-            User ct = new User();
+            Good gd = new Good();
             try
             {
-                ct = context.User.FirstOrDefault(n => n.user_id == Id);
+                gd = context.Good.FirstOrDefault(n => n.good_id == Id);
 
             }
             catch
             {
-                ct = null;
+                gd = null;
             }
-            return ct;
+            return gd;
         }
-        public bool Edit(User ct)
+        public bool Edit(Good gd)
         {
             try
             {
-                User temp = context.User.FirstOrDefault(n => n.user_id == ct.user_id);
-                temp = ct;
+                Good good = context.Good.FirstOrDefault(n => n.good_id == gd.good_id);
+                good = gd;
                 context.SaveChanges();
                 return true;
             }
@@ -74,13 +72,15 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
+
+
         }
-        public bool Remove(User ct)
+        public bool Remove(int id)
         {
             try
             {
-                User temp = context.User.FirstOrDefault(n => n.user_id == ct.user_id);
-                context.User.Remove(temp);
+                Good temp = context.Good.FirstOrDefault(n => n.good_id == id);
+                context.Good.Remove(temp);
                 context.SaveChanges();
                 return true;
             }
@@ -88,6 +88,8 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
+
+
         }
     }
 }

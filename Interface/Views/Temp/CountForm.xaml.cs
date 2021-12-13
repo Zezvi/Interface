@@ -20,31 +20,16 @@ namespace PetShop.Views.Temp
     /// </summary>
     public partial class CountForm : Window
     {
-        GoodsList Goods;
-        int prId;
-        int prCnt;
-        public CountForm(GoodsList goods, int id, int? count)
+
+        public CountForm()
         {
             InitializeComponent();
-            Goods = goods;
-            prId = id;
-            prCnt = (int)count;
+
         }
 
         private void btnConfirm_Click(object sender, RoutedEventArgs e)
         {
-            int number;
-
-            bool success = int.TryParse(txtCount.Text, out number);
-            if (success && number <= prCnt)
-            {
-                Goods.setGoods(prId, number);
-                Close();
-            }
-            else
-            {
-                MessageBox.Show("Недостаточно товаров!");
-            }
+            this.DialogResult = true;
         }
         void PassInt(Object sender, TextChangedEventArgs e)
         {
@@ -63,6 +48,10 @@ namespace PetShop.Views.Temp
         private void txtCount_TextChanged(object sender, TextChangedEventArgs e)
         {
             PassInt(sender, e);
+        }
+        public string Count
+        {
+            get { return txtCount.Text; }
         }
     }
 }

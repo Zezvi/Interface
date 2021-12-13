@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace PetShop.DataLayer
 {
-    class BonusCardLayer
+    class SupplierRepository
     {
         PetShopContext context;
-        public BonusCardLayer()
+        public SupplierRepository()
         {
             context = new PetShopContext();
         }
 
-        public void Add(BonusCard bonus)
+        public void Add(Supplier model)
         {
 
             try
             {
-                context.BonusCard.Add(bonus);
+                context.Supplier.Add(model);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -28,46 +28,45 @@ namespace PetShop.DataLayer
                 string str = ex.Message;
             }
         }
-        public List<BonusCard> Get()
+        public List<Supplier> Get()
         {
 
-            List<BonusCard> models = new List<BonusCard>();
+            List<Supplier> models = new List<Supplier>();
             using (PetShopContext ctx = new PetShopContext())
             {
                 try
                 {
-                    models = ctx.BonusCard.ToList();
+                    models = ctx.Supplier.ToList<Supplier>();
 
                 }
-                catch (Exception ex)
+                catch
                 {
-                    string str = ex.Message;
                     models = null;
                 }
             }
 
             return models;
         }
-        public BonusCard GetOne(int? Id)
+        public Supplier GetOne(int Id)
         {
-            BonusCard bc = new BonusCard();
+            Supplier ct = new Supplier();
             try
             {
-                bc = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == Id);
+                ct = context.Supplier.FirstOrDefault(n => n.supplier_id == Id);
 
             }
             catch
             {
-                bc = null;
+                ct = null;
             }
-            return bc;
+            return ct;
         }
-        public bool Edit(BonusCard bc)
+        public bool Edit(Supplier ct)
         {
             try
             {
-                BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
-                temp = bc;
+                Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct.supplier_id);
+                temp = ct;
                 context.SaveChanges();
                 return true;
             }
@@ -75,15 +74,13 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
-
-
         }
-        public bool Remove(BonusCard bc)
+        public bool Remove(Supplier ct)
         {
             try
             {
-                BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
-                context.BonusCard.Remove(temp);
+                Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct.supplier_id);
+                context.Supplier.Remove(temp);
                 context.SaveChanges();
                 return true;
             }
@@ -91,8 +88,6 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
-
-
         }
     }
 }

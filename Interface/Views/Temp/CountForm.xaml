@@ -7,9 +7,9 @@
         mc:Ignorable="d"
         Title="CountForm" Height="136" Width="354">
     <Grid Margin="0,0,0,3">
-        <Label Content="Укажите количество товара" HorizontalAlignment="Left" Margin="24,15,0,0" VerticalAlignment="Top" Height="36" Width="160"/>
-        <TextBox x:Name="txtCount" HorizontalAlignment="Left" Margin="219,15,0,0" Text="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" TextChanged="txtCount_TextChanged"/>
-        <Button x:Name="btnConfirm" Content="Подтвердить" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top" Height="27" Width="190" Click="btnConfirm_Click"/>
+        <Label Content="Укажите количество товара" HorizontalAlignment="Left" Margin="24,15,0,0" VerticalAlignment="Top" Height="36" Width="167"/>
+        <TextBox Name="txtCount" HorizontalAlignment="Left" Margin="219,15,0,0" Text="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" TextChanged="txtCount_TextChanged"/>
+        <Button  Content="Подтвердить" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top" Height="27" Width="190" Click="btnConfirm_Click"/>
 
     </Grid>
 </Window>

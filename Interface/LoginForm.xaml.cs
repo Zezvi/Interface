@@ -21,11 +21,11 @@ namespace PetShop
     /// </summary>
     public partial class LoginForm : Window
     {
-        UserLayer userLayer;
+        UserRepository userLayer;
         public LoginForm()
         {
             InitializeComponent();
-            userLayer = new UserLayer();
+            userLayer = new UserRepository();
 
         }
 
@@ -38,7 +38,7 @@ namespace PetShop
             User user = userLayer.Get().FirstOrDefault(n => n.login == login && n.password == password);
             if (user != null)
             {
-                MainWindow mainWindow = new MainWindow(user);
+                MainWindow mainWindow = new MainWindow();
                 this.Hide();
                 mainWindow.ShowDialog();
                 this.Close();

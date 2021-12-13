@@ -5,10 +5,10 @@ using System.Linq;
 
 namespace PetShop.DataLayer
 {
-    class CategoryLayer
+    class CategoryRepository
     {
         PetShopContext context;
-        public CategoryLayer()
+        public CategoryRepository()
         {
             context = new PetShopContext();
         }

@@ -4,74 +4,70 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows;
 
 namespace PetShop.DataLayer
 {
-    class CheckLayer
+    class BonusCardRepository
     {
-
         PetShopContext context;
-        public CheckLayer()
+        public BonusCardRepository()
         {
             context = new PetShopContext();
         }
 
-        public bool Add(Check model)
+        public void Add(BonusCard bonus)
         {
 
             try
             {
-                context.Check.Add(model);
+                context.BonusCard.Add(bonus);
                 context.SaveChanges();
-                return true;
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.ToString());
-                MessageBox.Show(ex.StackTrace);
-                return false;
+                string str = ex.Message;
             }
         }
-        public List<Check> Get()
+        public List<BonusCard> Get()
         {
 
-            List<Check> models = new List<Check>();
+            List<BonusCard> models = new List<BonusCard>();
             using (PetShopContext ctx = new PetShopContext())
             {
                 try
                 {
-                    models = ctx.Check.ToList<Check>();
+                    models = ctx.BonusCard.ToList();
 
                 }
-                catch
+                catch (Exception ex)
                 {
+                    string str = ex.Message;
                     models = null;
                 }
             }
 
             return models;
         }
-        public Check GetOne(int? Id)
+        public BonusCard GetOne(int? Id)
         {
-            Check ct = new Check();
+            BonusCard bc = new BonusCard();
             try
             {
-                ct = context.Check.FirstOrDefault(n => n.check_id == Id);
+                bc = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == Id);
 
             }
             catch
             {
-                ct = null;
+                bc = null;
             }
-            return ct;
+            return bc;
         }
-        public bool Edit(Check ct)
+        public bool Edit(BonusCard bc)
         {
             try
             {
-                Check temp = context.Check.FirstOrDefault(n => n.check_id == ct.check_id);
-                temp = ct;
+                BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
+                temp = bc;
                 context.SaveChanges();
                 return true;
             }
@@ -79,13 +75,15 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
+
+
         }
-        public bool Remove(Check ct)
+        public bool Remove(BonusCard bc)
         {
             try
             {
-                Check temp = context.Check.FirstOrDefault(n => n.check_id == ct.check_id);
-                context.Check.Remove(temp);
+                BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
+                context.BonusCard.Remove(temp);
                 context.SaveChanges();
                 return true;
             }
@@ -93,6 +91,8 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
+
+
         }
     }
 }

@@ -2,69 +2,76 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace PetShop.DataLayer
 {
-    class GoodsLayer
+    class CheckRepository
     {
+
         PetShopContext context;
-        public GoodsLayer()
+        public CheckRepository()
         {
             context = new PetShopContext();
         }
 
-        public void Add(Good good)
+        public bool Add(Check model)
         {
 
             try
             {
-                context.Good.Add(good);
+                context.Check.Add(model);
                 context.SaveChanges();
+                return true;
             }
             catch (Exception ex)
             {
-                string str = ex.Message;
+                MessageBox.Show(ex.ToString());
+                MessageBox.Show(ex.StackTrace);
+                return false;
             }
         }
-        public List<Good> Get()
+        public List<Check> Get()
         {
 
-            List<Good> goods = new List<Good>();
+            List<Check> models = new List<Check>();
             using (PetShopContext ctx = new PetShopContext())
             {
                 try
                 {
-                    goods = ctx.Good.ToList<Good>();
+                    models = ctx.Check.ToList<Check>();
 
                 }
                 catch
                 {
-                    goods = null;
+                    models = null;
                 }
             }
 
-            return goods;
+            return models;
         }
-        public Good GetOne(int Id)
+        public Check GetOne(int? Id)
         {
-            Good gd = new Good();
+            Check ct = new Check();
             try
             {
-                gd = context.Good.FirstOrDefault(n => n.good_id == Id);
+                ct = context.Check.FirstOrDefault(n => n.check_id == Id);
 
             }
             catch
             {
-                gd = null;
+                ct = null;
             }
-            return gd;
+            return ct;
         }
-        public bool Edit(Good gd)
+        public bool Edit(Check ct)
         {
             try
             {
-                Good good = context.Good.FirstOrDefault(n => n.good_id == gd.good_id);
-                good = gd;
+                Check temp = context.Check.FirstOrDefault(n => n.check_id == ct.check_id);
+                temp = ct;
                 context.SaveChanges();
                 return true;
             }
@@ -72,15 +79,13 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
-
-
         }
-        public bool Remove(Good model)
+        public bool Remove(Check ct)
         {
             try
             {
-                Good temp = context.Good.FirstOrDefault(n => n.good_id == model.good_id);
-                context.Good.Remove(temp);
+                Check temp = context.Check.FirstOrDefault(n => n.check_id == ct.check_id);
+                context.Check.Remove(temp);
                 context.SaveChanges();
                 return true;
             }
@@ -88,8 +93,6 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
-
-
         }
     }
 }

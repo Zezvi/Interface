@@ -85,13 +85,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="DataLayer\ActionLayer.cs" />
-    <Compile Include="DataLayer\BonusCardLayer.cs" />
-    <Compile Include="DataLayer\CategoryLayer.cs" />
-    <Compile Include="DataLayer\CheckLayer.cs" />
-    <Compile Include="DataLayer\GoodsLayer.cs" />
-    <Compile Include="DataLayer\SupplierLayer.cs" />
-    <Compile Include="DataLayer\UserLayer.cs" />
+    <Compile Include="DataLayer\ActionRepository.cs" />
+    <Compile Include="DataLayer\BonusCardRepository.cs" />
+    <Compile Include="DataLayer\CategoryRepository.cs" />
+    <Compile Include="DataLayer\CheckRepository.cs" />
+    <Compile Include="DataLayer\GoodsRepository.cs" />
+    <Compile Include="DataLayer\SupplierRepository.cs" />
+    <Compile Include="DataLayer\UserRepository.cs" />
     <Compile Include="LoginForm.xaml.cs">
       <DependentUpon>LoginForm.xaml</DependentUpon>
     </Compile>
@@ -103,20 +103,35 @@
     <Compile Include="Models\Line_check.cs" />
     <Compile Include="Models\Line_supply.cs" />
     <Compile Include="Models\PetShopContext.cs" />
+    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Supply.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Records\GoodRecord.cs" />
+    <Compile Include="Records\PurchaseRecord.cs" />
+    <Compile Include="Records\UserRecord.cs" />
+    <Compile Include="ViewModels\GoodViewModel.cs" />
+    <Compile Include="ViewModels\PurchaseViewModel.cs" />
+    <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="ViewModels\ViewModelBase.cs" />
     <Compile Include="Views\CheckView\CheckList.xaml.cs">
       <DependentUpon>CheckList.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\GoodsView\GoodsList.xaml.cs">
-      <DependentUpon>GoodsList.xaml</DependentUpon>
+    <Compile Include="Views\GoodsView\ManageGoods.xaml.cs">
+      <DependentUpon>ManageGoods.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PurchaseView\MakePurchase.xaml.cs">
       <DependentUpon>MakePurchase.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Views\Temp\BonuseForm.xaml.cs">
+      <DependentUpon>BonuseForm.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Temp\CountForm.xaml.cs">
       <DependentUpon>CountForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserView\UserDetails.xaml.cs">
+      <DependentUpon>UserDetails.xaml</DependentUpon>
     </Compile>
     <Page Include="LoginForm.xaml">
       <SubType>Designer</SubType>
@@ -138,7 +153,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\GoodsView\GoodsList.xaml">
+    <Page Include="Views\GoodsView\ManageGoods.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -146,7 +161,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Temp\BonuseForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Temp\CountForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserView\UserDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -190,6 +213,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
     <PropertyGroup>

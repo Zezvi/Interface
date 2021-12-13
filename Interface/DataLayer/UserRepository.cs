@@ -7,20 +7,20 @@ using System.Threading.Tasks;
 
 namespace PetShop.DataLayer
 {
-    class SupplierLayer
+    class UserRepository
     {
         PetShopContext context;
-        public SupplierLayer()
+        public UserRepository()
         {
             context = new PetShopContext();
         }
 
-        public void Add(Supplier model)
+        public void Add(User model)
         {
 
             try
             {
-                context.Supplier.Add(model);
+                context.User.Add(model);
                 context.SaveChanges();
             }
             catch (Exception ex)
@@ -28,15 +28,15 @@ namespace PetShop.DataLayer
                 string str = ex.Message;
             }
         }
-        public List<Supplier> Get()
+        public List<User> Get()
         {
 
-            List<Supplier> models = new List<Supplier>();
+            List<User> models = new List<User>();
             using (PetShopContext ctx = new PetShopContext())
             {
                 try
                 {
-                    models = ctx.Supplier.ToList<Supplier>();
+                    models = ctx.User.ToList<User>();
 
                 }
                 catch
@@ -47,12 +47,12 @@ namespace PetShop.DataLayer
 
             return models;
         }
-        public Supplier GetOne(int Id)
+        public User GetOne(int? Id)
         {
-            Supplier ct = new Supplier();
+            User ct = new User();
             try
             {
-                ct = context.Supplier.FirstOrDefault(n => n.supplier_id == Id);
+                ct = context.User.FirstOrDefault(n => n.user_id == Id);
 
             }
             catch
@@ -61,12 +61,15 @@ namespace PetShop.DataLayer
             }
             return ct;
         }
-        public bool Edit(Supplier ct)
+        public bool Edit(User ct)
         {
             try
             {
-                Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct.supplier_id);
-                temp = ct;
+                User temp = context.User.FirstOrDefault(n => n.user_id == ct.user_id);
+                temp.fio = ct.fio;
+                temp.login = ct.login;
+                temp.password = ct.password;
+                temp.role = ct.role;
                 context.SaveChanges();
                 return true;
             }
@@ -75,12 +78,12 @@ namespace PetShop.DataLayer
                 return false;
             }
         }
-        public bool Remove(Supplier ct)
+        public bool Remove(int id)
         {
             try
             {
-                Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct.supplier_id);
-                context.Supplier.Remove(temp);
+                User temp = context.User.FirstOrDefault(n => n.user_id == id);
+                context.User.Remove(temp);
                 context.SaveChanges();
                 return true;
             }

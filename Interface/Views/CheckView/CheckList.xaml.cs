@@ -21,15 +21,15 @@ namespace PetShop.Views.CheckView
     /// </summary>
     public partial class CheckList : Window
     {
-        UserLayer userLayer;
-        BonusCardLayer BonusCardLayer;
-        CheckLayer checkLayer;
+        UserRepository userLayer;
+        BonusCardRepository BonusCardLayer;
+        CheckRepository checkLayer;
         public CheckList()
         {
             InitializeComponent();
-            userLayer = new UserLayer();
-            BonusCardLayer = new BonusCardLayer();
-            checkLayer = new CheckLayer();
+            userLayer = new UserRepository();
+            BonusCardLayer = new BonusCardRepository();
+            checkLayer = new CheckRepository();
             checkgrid.ItemsSource = checkLayer.Get();
 
         }

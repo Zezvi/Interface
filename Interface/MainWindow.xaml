@@ -13,6 +13,7 @@
         <Button Content="Скидки" x:Name="btnActions" HorizontalAlignment="Left" Margin="12,132,0,0" VerticalAlignment="Top" Width="212" Click="btnActions_Click"/>
         <Button Content="Бонусные карты" x:Name="btnBonus" HorizontalAlignment="Left" Margin="12,173,0,0" VerticalAlignment="Top" Width="212" Click="btnBonus_Click"/>
         <Button Content="Продажи" x:Name="btnCheck" HorizontalAlignment="Left" Margin="12,212,0,0" VerticalAlignment="Top" Click="btnCheck_Click" Width="212"/>
+        <Button Content="Пользователи" x:Name="btnUsers" HorizontalAlignment="Left" Margin="12,237,0,0" VerticalAlignment="Top" Click="btnUsers_Click" Width="212"/>
 
     </Grid>
 </Window>

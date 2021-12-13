@@ -3,20 +3,61 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:PetShop.Views.PurchaseView"
+        xmlns:local="clr-namespace:PetShop.Views.PurchaseView" xmlns:records="clr-namespace:PetShop.Records" d:DataContext="{d:DesignInstance Type=records:PurchaseRecord}"
         mc:Ignorable="d"
-        Title="MakePurchase" Height="450" Width="800">
-    <Grid>
-        <Label Content="Оформление заказа" HorizontalAlignment="Left" Margin="334,10,0,0" VerticalAlignment="Top" Width="171"/>
-        <ListBox x:Name="lxOrder" Margin="63,98,280,148"/>
-        <Label Content="Выбранные товары" HorizontalAlignment="Left" Margin="213,51,0,0" VerticalAlignment="Top"/>
-        <Button x:Name="btnConfirm" Content="Подтвердить" HorizontalAlignment="Left" Margin="74,331,0,0" VerticalAlignment="Top" Width="110" Click="btnConfirm_Click"/>
-        <ListBox x:Name="lxBonuses" Margin="603,131,71,201"/>
-        <Label Content="Номер карты" HorizontalAlignment="Left" Margin="524,98,0,0" VerticalAlignment="Top"/>
-        <TextBox x:Name="txtCardNumber" HorizontalAlignment="Left" Height="23" Margin="618,101,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="83" TextChanged="txtCardNumber_TextChanged"/>
-        <TextBlock x:Name="tbTotal" HorizontalAlignment="Left" Margin="397,281,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="115" Height="26"/>
-        <Label Content="Стоимость товаров" HorizontalAlignment="Left" Margin="261,276,0,0" VerticalAlignment="Top" Height="26"/>
-        <TextBlock x:Name="tbBonuses" HorizontalAlignment="Left" Margin="673,228,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="48" Height="26"/>
-        <Label Content="Бонусы" HorizontalAlignment="Left" Margin="603,223,0,0" VerticalAlignment="Top" Height="26"/>
-    </Grid>
+        Title="MakePurchase" Height="468.667" Width="800">
+    <StackPanel Orientation="Vertical">
+        <DataGrid x:Name="Purchases" ItemsSource="{Binding PurchaseRecord.PurchaseRecords}" CanUserAddRows="False" AutoGenerateColumns="False" Height="188" Margin="10">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Код продукта" Binding="{Binding Path=Product_id}" IsReadOnly="True"/>
+                <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
+                <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="50"  IsReadOnly="True"/>
+                <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}" Width="180" IsReadOnly="True"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="331,0,10,0" Width="451">
+            <Label Content="Итого" Margin="20,0,20,0"/>
+            <TextBlock TextWrapping="Wrap" Height="30" Width="80" Text="{Binding TotalCost }" Margin="20,0,60,0"/>
+
+            <Button  Content="Оформить" Height="30" Width="80"
+                    Command="{Binding PurchaseCommand}"/>
+            <Button  Content="Отмена" Height="30" Width="103" 
+                    Command="{Binding ResetCommand}" Margin="5,5,10,5"/>
+        </StackPanel>
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="331,0,10,0" Width="451">
+            <Label Content="Бонусы" Margin="20,0,20,0"/>
+            <TextBlock TextWrapping="Wrap" Height="30" Width="80" Text="{Binding Bonuse}" Margin="15,0,25,0"/>
+            <Button  Content="Ввести номер бонусной карты " Height="30" Width="189"
+                Command="{Binding BonuseCommand}" Margin="30,5"/>
+        </StackPanel>
+        <StackPanel Height="129">
+            <DataGrid  x:Name="Goods" 
+                      ItemsSource="{Binding GoodRecord.GoodRecords}" AutoGenerateColumns="False" CanUserAddRows="False" Height="119" Margin="10">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Номер" Binding="{Binding Path=Good_id}" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_id}" Width="50"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" Width="112" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="50" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Доступное количество" Binding="{Binding Path=Count_stock}" Width="180" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Годен до " Binding="{Binding Path=Shelf_life}" Width="50" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Поставщик " Binding="{Binding Path=Supplier_id}" Width="125" IsReadOnly="True"/>
+
+
+                    <DataGridTemplateColumn Width="50">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <Button Content="Выбрать" CommandParameter="{Binding Path=Good_id}"
+                                        Command="{Binding Path=DataContext.SelectCommand,RelativeSource={RelativeSource FindAncestor,
+                                                AncestorType=Window}}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+
+                </DataGrid.Columns>
+            </DataGrid>
+        </StackPanel>
+        <Button Content="Button" Height="1"/>
+    </StackPanel>
 </Window>

@@ -6,7 +6,7 @@ namespace PetShop.Models
     {
         public PetShopContext()
             : base("zoo")
-        { }
+        {}
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -18,7 +18,6 @@ namespace PetShop.Models
             modelBuilder.Entity<Line_check>().ToTable("Line_check");
             modelBuilder.Entity<Line_supply>().ToTable("Line_supply");
             modelBuilder.Entity<Supplier>().ToTable("Supplier");
-            //modelBuilder.Entity<Seller>().ToTable("Seller");
             modelBuilder.Entity<Supply>().ToTable("Supply");
             modelBuilder.Entity<User>().ToTable("User");
 
@@ -30,7 +29,6 @@ namespace PetShop.Models
         public virtual DbSet<Good> Good { get; set; }
         public virtual DbSet<Line_check> Line_check { get; set; }
         public virtual DbSet<Line_supply> Line_supply { get; set; }
-        //public virtual DbSet<Seller> Seller { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
         public virtual DbSet<Supply> Supply { get; set; }
         public virtual DbSet<User> User { get; set; }
