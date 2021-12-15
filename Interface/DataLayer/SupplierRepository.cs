@@ -66,7 +66,9 @@ namespace PetShop.DataLayer
             try
             {
                 Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct.supplier_id);
-                temp = ct;
+                temp.phonenumber = ct.phonenumber;
+                temp.name = ct.name;
+                temp.supplier_id = ct.supplier_id;
                 context.SaveChanges();
                 return true;
             }
@@ -75,11 +77,11 @@ namespace PetShop.DataLayer
                 return false;
             }
         }
-        public bool Remove(Supplier ct)
+        public bool Remove(int ct)
         {
             try
             {
-                Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct.supplier_id);
+                Supplier temp = context.Supplier.FirstOrDefault(n => n.supplier_id == ct);
                 context.Supplier.Remove(temp);
                 context.SaveChanges();
                 return true;

@@ -78,11 +78,11 @@ namespace PetShop.DataLayer
 
 
         }
-        public bool Remove(BonusCard bc)
+        public bool Remove(int bc)
         {
             try
             {
-                BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
+                BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc);
                 context.BonusCard.Remove(temp);
                 context.SaveChanges();
                 return true;

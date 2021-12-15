@@ -15,4 +15,4 @@
         <Label Content="Бонус" HorizontalAlignment="Left" Margin="315,9,0,0" VerticalAlignment="Top"/>
 
     </Grid>
-    </Window>
+</Window>

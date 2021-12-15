@@ -1,6 +1,4 @@
-﻿using PetShop.DataLayer;
-using PetShop.Models;
-using PetShop.ViewModels;
+﻿using PetShop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,20 +13,17 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace PetShop
+namespace PetShop.Views.SupplierView
 {
     /// <summary>
-    /// Interaction logic for LoginForm.xaml
+    /// Interaction logic for SupplierDetails.xaml
     /// </summary>
-    public partial class LoginForm : Window
+    public partial class SupplierDetails : Window
     {
-
-        public LoginForm()
+        public SupplierDetails()
         {
             InitializeComponent();
-            this.DataContext = new LoginViewModel();
+            DataContext = new SupplierViewModel();
         }
-
-
     }
 }

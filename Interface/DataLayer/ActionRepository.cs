@@ -26,7 +26,7 @@ namespace PetShop.DataLayer
                 string str = ex.Message;
             }
         }
-        public List<Models.Action> ShowALL()
+        public List<Models.Action> Get()
         {
 
             List<Models.Action> models = new List<Models.Action>();
@@ -75,11 +75,11 @@ namespace PetShop.DataLayer
 
 
         }
-        public bool Remove(Models.Action model)
+        public bool Remove(int id)
         {
             try
             {
-                Models.Action temp = ctx.Action.FirstOrDefault(n => n.action_id == model.action_id);
+                Models.Action temp = ctx.Action.FirstOrDefault(n => n.action_id == id);
                 ctx.Action.Remove(temp);
                 ctx.SaveChanges();
                 return true;

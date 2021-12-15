@@ -62,6 +62,12 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="MaterialDesignColors, Version=2.0.4.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignColors.2.0.4\lib\net452\MaterialDesignColors.dll</HintPath>
+    </Reference>
+    <Reference Include="MaterialDesignThemes.Wpf, Version=4.3.0.3, Culture=neutral, PublicKeyToken=df2a72020bd7962a, processorArchitecture=MSIL">
+      <HintPath>..\packages\MaterialDesignThemes.4.3.0\lib\net452\MaterialDesignThemes.Wpf.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
@@ -107,22 +113,45 @@
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Supply.cs" />
     <Compile Include="Models\User.cs" />
+    <Compile Include="Records\ActionRecord.cs" />
+    <Compile Include="Records\BonusRecord.cs" />
     <Compile Include="Records\GoodRecord.cs" />
     <Compile Include="Records\PurchaseRecord.cs" />
+    <Compile Include="Records\SupplierRecord.cs" />
     <Compile Include="Records\UserRecord.cs" />
+    <Compile Include="ViewModels\ActionViewModel.cs" />
+    <Compile Include="ViewModels\BonuseViewModel.cs" />
     <Compile Include="ViewModels\GoodViewModel.cs" />
+    <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\PurchaseViewModel.cs" />
     <Compile Include="ViewModels\RelayCommand.cs" />
+    <Compile Include="ViewModels\SupplierViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="ViewModels\ViewModelBase.cs" />
+    <Compile Include="Views\ActionView\ActionDetails.xaml.cs">
+      <DependentUpon>ActionDetails.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\BonuseView\BonuseDetails.xaml.cs">
+      <DependentUpon>BonuseDetails.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\CheckView\CheckList.xaml.cs">
       <DependentUpon>CheckList.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GoodsView\GetCategoryForm.xaml.cs">
+      <DependentUpon>GetCategoryForm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\GoodsView\GetSupplierForm.xaml.cs">
+      <DependentUpon>GetSupplierForm.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\GoodsView\ManageGoods.xaml.cs">
       <DependentUpon>ManageGoods.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\PurchaseView\MakePurchase.xaml.cs">
       <DependentUpon>MakePurchase.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\SupplierView\SupplierDetails.xaml.cs">
+      <DependentUpon>SupplierDetails.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Temp\BonuseForm.xaml.cs">
       <DependentUpon>BonuseForm.xaml</DependentUpon>
@@ -149,7 +178,23 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="Views\ActionView\ActionDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\BonuseView\BonuseDetails.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\CheckView\CheckList.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GoodsView\GetCategoryForm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\GoodsView\GetSupplierForm.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -158,6 +203,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\PurchaseView\MakePurchase.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\SupplierView\SupplierDetails.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -221,6 +270,8 @@
     </PropertyGroup>
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
     <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+    <Error Condition="!Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets'))" />
   </Target>
   <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <Import Project="..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.3.0\build\MaterialDesignThemes.targets')" />
 </Project>

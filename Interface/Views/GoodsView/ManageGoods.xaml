@@ -5,11 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.GoodsView"
         mc:Ignorable="d"
-        Title="ManageGoods" Height="572.772" Width="900.22">
-    <StackPanel Orientation="Vertical">
-        <GroupBox Header="Форма товаров" Margin="10" Height="365">
+        Title="ManageGoods" Height="832.772" Width="840.22">
+    <StackPanel Orientation="Vertical" Margin="0,0,18,23">
+        <GroupBox Header="Форма товаров" Margin="10" Height="418">
             <Grid Margin="0,10,0,2">
                 <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
                     <RowDefinition Height="1*"/>
@@ -40,8 +41,7 @@
                        Text="{Binding Path=GoodRecord.Description, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
                 <Label Content="Срок годности" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
                        Grid.Row="4" Grid.Column="0" />
-                <TextBox Grid.Row="4" Grid.Column="1"  Height="27" 
-                       Text="{Binding Path=GoodRecord.Shelf_life, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
+                <DatePicker  SelectedDate="{Binding Path=GoodRecord.Shelf_life, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left" Grid.Row="4" Grid.Column="1" />
                 <Label Content="Категория" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
                        Grid.Row="5" Grid.Column="0" />
                 <TextBox Grid.Row="5" Grid.Column="1"  Height="27" 
@@ -50,20 +50,24 @@
                        Grid.Row="6" Grid.Column="0" />
                 <TextBox Grid.Row="6" Grid.Column="1"  Height="27" 
                        Text="{Binding Path=GoodRecord.Supplier_id, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
-                <Button Content="Выбрать поставщика" Grid.Row="6" Grid.Column="1"  Height="30" Margin="325,9,165,6"/>
-                <Button Content="Выбрать категорию" Grid.Row="5" Grid.Column="1"  Height="30" Margin="325,7,165,7"/>
+                <Button Content="Выбрать поставщика"  Command="{Binding SupplierCommand}" Grid.Row="6" Grid.Column="1"  Height="30" Margin="325,9,165,6"/>
+                <Button Content="Выбрать категорию"  Command="{Binding CategoryCommand}" Grid.Row="5" Grid.Column="1"  Height="30" Margin="325,7,165,7"/>
+                <Label Content="Количество" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
+                       Grid.Row="7" Grid.Column="0" />
+                <TextBox Grid.Row="7" Grid.Column="1"  Height="27" 
+                       Text="{Binding Path=GoodRecord.Count_stock, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
 
             </Grid>
         </GroupBox>
         <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button  Content="Сохранить" Height="30" Width="80"
-                    Command="{Binding SaveCommand}" Margin="0,0,20,0"/>
+            <Button  Content="Сохранить" Height="30" Width="123"
+                    Command="{Binding SaveCommand}" Margin="0,5,20,5"/>
             <Button  Content="Отмена" Height="30" Width="80" 
                     Command="{Binding ResetCommand}" Margin="5,0,10,0"/>
         </StackPanel>
-        <StackPanel Height="90">
+        <StackPanel Height="260">
             <DataGrid  
-                      ItemsSource="{Binding GoodRecord.GoodRecords}" AutoGenerateColumns="False" CanUserAddRows="False" Height="82" Margin="10">
+                      ItemsSource="{Binding GoodRecord.GoodRecords}" AutoGenerateColumns="False" CanUserAddRows="False" Height="260" Margin="10" RenderTransformOrigin="0.503,0.64">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=Good_id}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
@@ -73,7 +77,7 @@
                     <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=Shelf_life}" Width="180" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_id}" Width="80" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Supplier_id}" Width="125" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Выбрать" CommandParameter="{Binding Path=Good_id}"
@@ -82,7 +86,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="50">
+                    <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Удалить"  CommandParameter="{Binding Path=Good_id}"
