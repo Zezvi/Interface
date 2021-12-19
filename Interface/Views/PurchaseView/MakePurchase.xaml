@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.PurchaseView" xmlns:records="clr-namespace:PetShop.Records" d:DataContext="{d:DesignInstance Type=records:PurchaseRecord}"
         mc:Ignorable="d"
-        Title="MakePurchase" Height="508.667" Width="940">
-    <StackPanel Orientation="Vertical">
+        Title="MakePurchase" Height="624.667" Width="1069">
+    <StackPanel Orientation="Vertical" Margin="0,0,2,-8">
         <DataGrid x:Name="Purchases" ItemsSource="{Binding PurchaseRecord.PurchaseRecords}" CanUserAddRows="False" AutoGenerateColumns="False" Height="188" Margin="10">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Код продукта" Binding="{Binding Path=Product_id}" IsReadOnly="True"/>
@@ -16,24 +16,25 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="280,0,10,0" Width="502">
-            <Label Content="Итого" Margin="20,0,20,0"/>
-            <TextBlock TextWrapping="Wrap" Height="30" Width="80" Text="{Binding TotalCost }" Margin="20,0,60,0"/>
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="179,0,80,10" Width="673">
 
+            <Label Content="Итого" Margin="20,0,20,0"/>
+            <TextBlock TextWrapping="Wrap" Height="30" Width="82" Text="{Binding TotalCost }" Margin="20,5,30,5"/>
+            <DatePicker SelectedDate="{Binding DatePurchase}" Height="30" Width="138" Margin="5,5,3,5"/>
             <Button  Content="Оформить" Height="30" Width="140"
-                    Command="{Binding PurchaseCommand}" Margin="0,5"/>
+                    Command="{Binding PurchaseCommand}" Margin="5,5"/>
             <Button  Content="Отмена" Height="30" Width="103" 
                     Command="{Binding ResetCommand}" Margin="10,5,10,5"/>
         </StackPanel>
-        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="303,0,10,0" Width="479">
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="303,0,10,30" Width="479">
             <Label Content="Бонусы" Margin="20,0,20,0"/>
             <TextBlock TextWrapping="Wrap" Height="30" Width="80" Text="{Binding Bonuse}" Margin="15,0,25,0"/>
-            <Button  Content="Ввести номер бонусной карты " Height="30" Width="234"
+            <Button  Content="Ввести номер бонусной карты " Height="30" Width="233"
                 Command="{Binding BonuseCommand}" Margin="30,5"/>
         </StackPanel>
-        <StackPanel Height="129">
+        <StackPanel Height="229">
             <DataGrid  x:Name="Goods" 
-                      ItemsSource="{Binding GoodRecord.GoodRecords}" SelectionMode="Single" AutoGenerateColumns="False" CanUserAddRows="False" Height="119" Margin="10">
+                      ItemsSource="{Binding GoodRecord.GoodRecords}" SelectionMode="Single" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" Margin="10">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер" Binding="{Binding Path=Good_id}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>

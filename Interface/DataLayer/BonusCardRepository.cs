@@ -68,6 +68,9 @@ namespace PetShop.DataLayer
             {
                 BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
                 temp = bc;
+                temp.bonus_card_id = bc.bonus_card_id;
+                temp.card_number = bc.card_number;
+                temp.bonus = bc.bonus;
                 context.SaveChanges();
                 return true;
             }

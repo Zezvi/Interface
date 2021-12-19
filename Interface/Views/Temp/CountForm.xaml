@@ -8,8 +8,8 @@
         Title="CountForm" Height="136" Width="354">
     <Grid Margin="0,0,0,3">
         <Label Content="Укажите количество товара" HorizontalAlignment="Left" Margin="24,15,0,0" VerticalAlignment="Top" Height="36" Width="167"/>
-        <TextBox Name="txtCount" HorizontalAlignment="Left" Margin="219,15,0,0" Text="1" TextWrapping="Wrap" VerticalAlignment="Top" Width="79" TextChanged="txtCount_TextChanged"/>
-        <Button  Content="Подтвердить" HorizontalAlignment="Center" Margin="0,59,0,0" VerticalAlignment="Top" Height="27" Width="190" Click="btnConfirm_Click"/>
+        <Button Content="Подтвердить" IsCancel="True"  HorizontalAlignment="Left" Margin="24,47,0,0" VerticalAlignment="Top" Width="133"/>
+        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,15,0,0" TextWrapping="Wrap" Text="{Binding Count}" VerticalAlignment="Top" Width="120"/>
 
     </Grid>
 </Window>

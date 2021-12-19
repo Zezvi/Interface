@@ -3,16 +3,20 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:i="http://schemas.microsoft.com/expression/2010/interactivity"
+
         xmlns:local="clr-namespace:PetShop.Views.Temp"
         mc:Ignorable="d"
-        Title="BonuseForm" Height="192" Width="526.666">
+        Title="Оформление бонусов" Height="192" Width="526.666">
     <Grid Margin="0,0,12,3">
-        <Label Content="Введите номер бонусной карты" HorizontalAlignment="Left" Margin="6,9,0,0" VerticalAlignment="Top" Height="36" Width="192"/>
-        <TextBox Name="txtBonuse" HorizontalAlignment="Left" Margin="212,13,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="92" TextChanged="txtBonuse_TextChanged"/>
-        <Button  Content="Подтвердить" HorizontalAlignment="Center" Margin="10,57,307,0" VerticalAlignment="Top" Height="27" Width="190" Click="Button_Click"/>
-        <ListBox Name="lbTemp" HorizontalAlignment="Left" Height="72" Margin="212,48,0,0" VerticalAlignment="Top" Width="92"/>
-        <TextBlock Name="tbTemp" HorizontalAlignment="Left" Margin="364,14,0,0" TextWrapping="Wrap" Text="0" VerticalAlignment="Top" Width="41"/>
+        <Label Content="Введите номер бонусной карты" HorizontalAlignment="Left" Margin="6,9,0,0" VerticalAlignment="Top" Height="36" Width="187"/>
+
+        <ListBox Name="lbTemp" HorizontalAlignment="Left" Height="91" Margin="262,57,0,0" VerticalAlignment="Top" ItemsSource="{Binding Card_numbers}" Width="126"/>
+        <TextBlock Text="{Binding Bonuses}" HorizontalAlignment="Left" Margin="364,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="41"/>
         <Label Content="Бонус" HorizontalAlignment="Left" Margin="315,9,0,0" VerticalAlignment="Top"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Card_number}" Height="23" Margin="221,9,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="81"/>
+
+        <Button Content="Подтвердить" Command="{Binding CheckCommand}"  IsCancel="True" HorizontalAlignment="Left" Margin="22,57,0,0" VerticalAlignment="Top" Width="190"/>
 
     </Grid>
 </Window>

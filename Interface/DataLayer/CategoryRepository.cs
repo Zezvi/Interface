@@ -64,7 +64,8 @@ namespace PetShop.DataLayer
             try
             {
                 Category temp = context.Category.FirstOrDefault(n => n.category_id == ct.category_id);
-                temp = ct;
+                temp.category_id = ct.category_id;
+                temp.name = ct.name;
                 context.SaveChanges();
                 return true;
             }

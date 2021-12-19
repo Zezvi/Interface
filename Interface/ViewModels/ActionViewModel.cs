@@ -102,36 +102,61 @@ namespace PetShop.ViewModels
 		{
 			if (ActionRecord != null)
 			{
-				action.action_id = ActionRecord.Action_id;
-				action.name = ActionRecord.Name;
-				action.data_start = ActionRecord.Data_start;
-				action.data_end = ActionRecord.Data_end;
-				action.discount = ActionRecord.Discount;
+				bool check = CheckInput();
+				if (check)
+				{
+					action.action_id = ActionRecord.Action_id;
+					action.name = ActionRecord.Name;
+					action.data_start = ActionRecord.Data_start;
+					action.data_end = ActionRecord.Data_end;
+					action.discount = ActionRecord.Discount;
 
-				try
-				{
-					if (ActionRecord.Action_id <= 0)
+					try
 					{
-						repository.Add(action);
-						MessageBox.Show("Новая запись успешно добавлена");
+						if (ActionRecord.Action_id <= 0)
+						{
+							repository.Add(action);
+							MessageBox.Show("Новая запись успешно добавлена");
+						}
+						else
+						{
+							action.action_id = ActionRecord.Action_id;
+							repository.Edit(action);
+							MessageBox.Show("Запись успешно обновлена");
+						}
 					}
-					else
+					catch (Exception ex)
 					{
-						action.action_id = ActionRecord.Action_id;
-						repository.Edit(action);
-						MessageBox.Show("Запись успешно обновлена");
+						MessageBox.Show("Возникли ошибки при сохранении. " + ex.InnerException);
+					}
+					finally
+					{
+						GetAll();
+						ResetData();
 					}
 				}
-				catch (Exception ex)
-				{
-					MessageBox.Show("Возникли ошибки при сохранении. " + ex.InnerException);
-				}
-				finally
-				{
-					GetAll();
-					ResetData();
-				}
+
 			}
+		}
+		private bool CheckInput()
+		{
+			if (String.IsNullOrEmpty(ActionRecord.Name))
+			{
+
+				MessageBox.Show("Не задано название акции");
+				return false;
+			}
+			if (ActionRecord.Data_end <= ActionRecord.Data_start)
+			{
+				MessageBox.Show("Некорректная дата проведения акции");
+				return false;
+			}
+			if (ActionRecord.Discount > 50)
+			{
+				MessageBox.Show("Некорретно выбрана скидка по акции \n Размер скидки не должен превышать 50%");
+				return false;
+			}
+			return true;
 		}
 
 		public void EditData(int id)

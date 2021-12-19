@@ -64,7 +64,14 @@ namespace PetShop.DataLayer
             try
             {
                 Good good = context.Good.FirstOrDefault(n => n.good_id == gd.good_id);
-                good = gd;
+                good.category_id = gd.category_id;
+                good.count_stock = gd.count_stock;
+                good.description = gd.description;
+                good.good_id = gd.good_id;
+                good.name = gd.name;
+                good.price = gd.price;
+                good.shelf_life = gd.shelf_life;
+                good.supplier_id = gd.supplier_id;
                 context.SaveChanges();
                 return true;
             }

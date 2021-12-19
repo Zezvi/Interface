@@ -1,6 +1,7 @@
 ﻿using PetShop.DataLayer;
 using PetShop.Models;
 using PetShop.Records;
+using PetShop.Views.GoodsView;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,15 +13,64 @@ using System.Windows.Input;
 
 namespace PetShop.ViewModels
 {
-	class GoodViewModel
+	class GoodViewModel : ViewModelBase
 	{
 		private ICommand _saveCommand;
 		private ICommand _resetCommand;
 		private ICommand _editCommand;
 		private ICommand _deleteCommand;
+
+		private ICommand _supplierCommand;
+		private ICommand _categoryCommand;
 		private GoodsRepository repository;
 		private Good good = null;
 		public GoodRecord GoodRecord { get; set; }
+
+		private int? category_id = 0;
+		public int? Category_id
+		{
+			get { return category_id; }
+			set
+			{
+				category_id = value;
+				OnPropertyChanged("Category_id");
+
+			}
+		}
+
+		private int? supplier_id = 0;
+		public int? Supplier_id
+		{
+			get { return supplier_id; }
+			set
+			{
+				supplier_id = value;
+				OnPropertyChanged("Supplier_id");
+
+			}
+		}
+
+		public ICommand SupplierCommand
+		{
+			get
+			{
+				if (_supplierCommand == null)
+					_supplierCommand = new RelayCommand(param => GetSupplier(), null);
+
+				return _supplierCommand;
+			}
+		}
+
+		public ICommand CategoryCommand
+		{
+			get
+			{
+				if (_categoryCommand == null)
+					_categoryCommand = new RelayCommand(param => GetCategory(), null);
+
+				return _categoryCommand;
+			}
+		}
 		public ICommand ResetCommand
 		{
 			get
@@ -82,6 +132,8 @@ namespace PetShop.ViewModels
 			GoodRecord.Supplier_id = 0;
 			GoodRecord.Category_id = 0;
 			GoodRecord.Shelf_life = DateTime.MinValue;
+			GoodRecord.Description = "";
+			GoodRecord.Count_stock = 0;
 		}
 
 		public void DeleteGood(int id)
@@ -116,6 +168,7 @@ namespace PetShop.ViewModels
 				good.count_stock = GoodRecord.Count_stock;
 				good.supplier_id = GoodRecord.Supplier_id;
 				good.shelf_life = GoodRecord.Shelf_life;
+				good.description = GoodRecord.Description;
 
 				try
 				{
@@ -175,6 +228,27 @@ namespace PetShop.ViewModels
 
 			}));
 		}
-
+		public void GetCategory()
+		{
+			GetCategoryForm getCategoryForm = new GetCategoryForm();
+			if (getCategoryForm.ShowDialog() == true)
+			{
+				if (getCategoryForm.Category_id > 0)
+				{
+					GoodRecord.Category_id = getCategoryForm.Category_id;
+				}
+			}
+		}
+		public void GetSupplier()
+		{
+			GetSupplierForm getSupplierForm = new GetSupplierForm();
+			if (getSupplierForm.ShowDialog() == true)
+			{
+				if (getSupplierForm.Supplier_id > 0)
+				{
+					GoodRecord.Supplier_id = getSupplierForm.Supplier_id;
+				}
+			}
+		}
 	}
 }

@@ -1,5 +1,6 @@
 ﻿using PetShop.DataLayer;
 using PetShop.Models;
+using PetShop.Views.SellerView;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -56,8 +57,22 @@ namespace PetShop.ViewModels
                 User user = users.FirstOrDefault(n => n.login == Login && n.password == Password);
                 if (user != null)
                 {
-                    MainWindow mainWindow = new MainWindow(user);
-                    mainWindow.ShowDialog();
+                    if (user.role == 3)
+                    {
+                        Views.ManagerView.ManagerMenu mainWindow = new Views.ManagerView.ManagerMenu(user);
+                        mainWindow.ShowDialog();
+                    }
+                    else if (user.role == 2)
+                    {
+                        SellerMenu mainWindow = new SellerMenu(user);
+                        mainWindow.ShowDialog();
+                    }
+                    else if (user.role == 1)
+                    {
+                        MainWindow mainWindow = new MainWindow(user);
+                        mainWindow.ShowDialog();
+                    }
+
                 }
                 else
                 {

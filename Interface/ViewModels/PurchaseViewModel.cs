@@ -16,8 +16,19 @@ namespace PetShop.ViewModels
         private ICommand _purchaseCommand;
         private ICommand _selectCommand;
         private ICommand _bonuseCommand;
+        private ICommand _resetCommand;
+
         private GoodsRepository goodRepository;
         private CheckRepository checkRepository;
+        private ActionRepository actionRepository;
+
+        private DateTime datePurchase;
+        public DateTime DatePurchase
+        {
+            get { return datePurchase; }
+            set { datePurchase = value; OnPropertyChanged("DatePurchase"); }
+        }
+
         private int bonuse_card_id;
         public PurchaseRecord PurchaseRecord { get; set; }
         User current;
@@ -73,6 +84,15 @@ namespace PetShop.ViewModels
                 return _bonuseCommand;
             }
         }
+        public ICommand ResetCommand
+        {
+            get
+            {
+                if (_resetCommand == null)
+                    _resetCommand = new RelayCommand(param => ResetData(), null);
+                return _resetCommand;
+            }
+        }
 
 
         public PurchaseViewModel(User user)
@@ -81,17 +101,16 @@ namespace PetShop.ViewModels
             GoodRecord = new GoodRecord();
             PurchaseRecord = new PurchaseRecord();
             checkRepository = new CheckRepository();
+            actionRepository = new ActionRepository();
             current = user;
             GetAll();
         }
 
         public void ResetData()
         {
-            GoodRecord.Good_id = 0;
-            GoodRecord.Name = "";
-            GoodRecord.Price = 0;
-            GoodRecord.Supplier_id = 0;
-            GoodRecord.Shelf_life = DateTime.MinValue;
+            PurchaseRecord.PurchaseRecords.Clear();
+            TotalCost = 0;
+            Bonuse = 0;
         }
 
         public void GetAll()
@@ -115,40 +134,70 @@ namespace PetShop.ViewModels
         {
             if (PurchaseRecord.PurchaseRecords != null)
             {
-                try
+                bool checkin = CheckInput();
+                if (checkin)
                 {
-
-                    foreach (var item in PurchaseRecord.PurchaseRecords)
+                    try
                     {
-                        var good = goodRepository.GetOne(item.Product_id);
-                        if (GoodRecord.Count_stock >= item.Count && good != null)
+                        int? discountByaction = 0;
+                        string actionInfo = "";
+                        string bonuseInfo = "";
+                        foreach (var item in PurchaseRecord.PurchaseRecords)
                         {
-                            good.count_stock -= item.Count;
-                            goodRepository.Edit(good);
+                            var good = goodRepository.GetOne(item.Product_id);
+                            if (GoodRecord.Count_stock >= item.Count && good != null)
+                            {
+                                good.count_stock -= item.Count;
+                                goodRepository.Edit(good);
+                            }
                         }
+                        var action = actionRepository.GetOnebyDate(DatePurchase);
+
+                        decimal totalbyAction = 0;
+
+
+                        if (action != null)
+                        {
+                            discountByaction = action.discount;
+                            actionInfo = "Сегодня день проведения акции " + action.name + " скидка на покупку составит " + action.discount + " %";
+                            totalbyAction = (decimal)(TotalCost / 100 * action.discount);
+                            totalbyAction = Math.Round(totalbyAction, 2);
+                        }
+                        if (Bonuse > 0)
+                        {
+                            bonuseInfo = "Вы воспользовались бонусами " + Bonuse + " руб";
+                        }
+
+                        decimal? temp = TotalCost - Bonuse;
+                        if (temp < 0) temp = 0;
+                        Check check = new Check();
+                        check.date_sale = DatePurchase;
+
+                        check.total_price = temp - totalbyAction;
+                        if (check.total_price < 0) check.total_price = 0;
+                        check.user_id = current.user_id;
+                        check.bonus_card_id = bonuse_card_id;
+                        checkRepository.Add(check);
+                        string checkInfo = "\nДата продажи :" + check.date_sale + "\n" + "Стоимость покупки : " + check.total_price;
+
+                        string output = actionInfo + "\n" + bonuseInfo + checkInfo + "\nТовары проданы, чек сформирован";
+                        MessageBox.Show(output);
+
+
                     }
-                    decimal? temp = TotalCost - bonuse;
-                    Check check = new Check();
-                    check.date_sale = DateTime.Now;
-                    check.total_price = temp;
-                    check.user_id = current.user_id;
-                    check.bonus_card_id = bonuse_card_id;
-                    checkRepository.Add(check);
-                    MessageBox.Show("Товары проданы, чек сформирован.");
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show("Возникли ошибки при добавлении данных");
 
+                    }
+                    finally
+                    {
+                        GetAll();
+                        ResetData();
+                        PurchaseRecord.PurchaseRecords.Clear();
+                    }
+                }
 
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Возникли ошибки при добавлении данных");
-
-                }
-                finally
-                {
-                    GetAll();
-                    ResetData();
-                    PurchaseRecord.PurchaseRecords.Clear();
-                }
             }
 
         }
@@ -157,65 +206,80 @@ namespace PetShop.ViewModels
             var good = goodRepository.GetOne(id);
 
             CountForm countForm = new CountForm();
-            if (countForm.ShowDialog() == true)
-            {
-                if (!String.IsNullOrEmpty(countForm.Count))
-                {
-                    GoodRecord.Good_id = good.good_id;
-                    GoodRecord.Name = good.name;
-                    GoodRecord.Price = good.price;
-                    GoodRecord.Count_stock = good.count_stock;
-                    if (PurchaseRecord.PurchaseRecords == null)
-                    {
-                        PurchaseRecord.PurchaseRecords = new ObservableCollection<PurchaseRecord>();
-                    }
-                    bool check = true;
-                    foreach (var item in PurchaseRecord.PurchaseRecords)
-                    {
-                        if (item.Product_id == good.good_id)
-                        {
-                            check = false;
-                            break;
-                        }
-                    }
-                    if (check)
-                    {
+            CountGoodsViewModel countGoodsViewModel = (CountGoodsViewModel)countForm.DataContext;
 
-                        var temp = new PurchaseRecord();
-                        PurchaseRecord.PurchaseRecords.Add(new PurchaseRecord()
-                        {
-                            Product_id = good.good_id,
-                            Name = good.name,
-                            Count = int.Parse(countForm.Count),
-                            Price = good.price,
-                        });
-                        TotalCost += good.price;
+
+
+            countForm.ShowDialog();
+            if (countGoodsViewModel.Count > 0)
+            {
+
+                GoodRecord.Good_id = good.good_id;
+                GoodRecord.Name = good.name;
+                GoodRecord.Price = good.price;
+                GoodRecord.Count_stock = good.count_stock;
+                if (PurchaseRecord.PurchaseRecords == null)
+                {
+                    PurchaseRecord.PurchaseRecords = new ObservableCollection<PurchaseRecord>();
+                }
+                bool check = true;
+                foreach (var item in PurchaseRecord.PurchaseRecords)
+                {
+                    if (item.Product_id == good.good_id)
+                    {
+                        check = false;
+                        break;
                     }
                 }
-                else
+                if (check)
                 {
-                    MessageBox.Show("Укажите количество");
+
+                    var temp = new PurchaseRecord();
+                    PurchaseRecord.PurchaseRecords.Add(new PurchaseRecord()
+                    {
+                        Product_id = good.good_id,
+                        Name = good.name,
+                        Count = countGoodsViewModel.Count,
+                        Price = good.price,
+                    });
+                    TotalCost += good.price * countGoodsViewModel.Count;
                 }
             }
+            else
+            {
+                MessageBox.Show("Укажите количество");
+            }
+
         }
         public void CheckBonuse()
         {
             BonuseForm bonuseForm = new BonuseForm();
-            if (bonuseForm.ShowDialog() == true)
-            {
-                if (bonuseForm.Bonuse_Card_Id > 0)
-                {
-                    bonuse_card_id = bonuseForm.Bonuse_Card_Id;
-                    Bonuse = bonuseForm.Bonuse_Size;
+            BonuseCheckViewModel bonuseCheckViewModel = (BonuseCheckViewModel)bonuseForm.DataContext;
 
-                }
-                else
-                {
-                    bonuse_card_id = 0;
-                    Bonuse = 0;
-                }
+            bonuseForm.ShowDialog();
+
+            if (bonuseCheckViewModel.Bonuses > 0)
+            {
+                Bonuse = bonuseCheckViewModel.Bonuses;
+                bonuse_card_id = (int)bonuseCheckViewModel.Bonuse_card_id;
             }
+
         }
+        private bool CheckInput()
+        {
+            if (DatePurchase == DateTime.MinValue)
+            {
+                MessageBox.Show("Не указана дата покупки");
+                return false;
+            }
+            else if (PurchaseRecord.PurchaseRecords.Count == 0)
+            {
+                MessageBox.Show("В корзину ничего не добавлено");
+                return false;
+            }
+            return true;
+        }
+
     }
 }
 

@@ -71,7 +71,11 @@ namespace PetShop.DataLayer
             try
             {
                 Check temp = context.Check.FirstOrDefault(n => n.check_id == ct.check_id);
-                temp = ct;
+                temp.bonus_card_id = ct.bonus_card_id;
+                temp.check_id = ct.check_id;
+                temp.date_sale = ct.date_sale;
+                temp.total_price = ct.total_price;
+                temp.user_id = ct.user_id;
                 context.SaveChanges();
                 return true;
             }
@@ -80,11 +84,11 @@ namespace PetShop.DataLayer
                 return false;
             }
         }
-        public bool Remove(Check ct)
+        public bool Remove(int ct)
         {
             try
             {
-                Check temp = context.Check.FirstOrDefault(n => n.check_id == ct.check_id);
+                Check temp = context.Check.FirstOrDefault(n => n.check_id == ct);
                 context.Check.Remove(temp);
                 context.SaveChanges();
                 return true;

@@ -59,12 +59,30 @@ namespace PetShop.DataLayer
             }
             return model;
         }
+        public Models.Action GetOnebyDate(DateTime dateAction)
+        {
+            Models.Action model = new Models.Action();
+            try
+            {
+                model = ctx.Action.FirstOrDefault(n => n.data_start <= dateAction && n.data_end >= dateAction);
+            }
+            catch
+            {
+                model = null;
+            }
+            return model;
+        }
         public bool Edit(Models.Action model)
         {
             try
             {
                 Models.Action temp = ctx.Action.FirstOrDefault(n => n.action_id == model.action_id);
                 temp = model;
+                temp.action_id = model.action_id;
+                temp.data_end = model.data_end;
+                temp.data_start = model.data_start;
+                temp.discount = model.discount;
+                temp.name = model.name;
                 ctx.SaveChanges();
                 return true;
             }
