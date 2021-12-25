@@ -22,7 +22,7 @@
                        VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="0"/>
                 <TextBox Grid.Row="0" Grid.Column="1"  Height="27" 
                        Text="{Binding Path=SupplierRecord.Supplier_id, Mode=TwoWay}"  Margin="5"  Width="300" HorizontalAlignment="Left"/>
-                <Label Content="Назваие поставщика" HorizontalAlignment="Left" 
+                <Label Content="Название поставщика" HorizontalAlignment="Left" 
                        VerticalContentAlignment="Center" Grid.Column="0" Grid.Row="1"/>
                 <TextBox Grid.Row="1" Grid.Column="1"  Height="27" 
                        Text="{Binding Path=SupplierRecord.Name, Mode=TwoWay}"  Margin="5"  Width="300" HorizontalAlignment="Left"/>

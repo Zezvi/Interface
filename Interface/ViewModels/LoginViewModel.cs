@@ -76,13 +76,10 @@ namespace PetShop.ViewModels
                 }
                 else
                 {
-                    MessageBox.Show("Пользователь с таким логином не найден!");
+                    MessageBox.Show("Не удалось найти пользователя!");
                 }
             }
 
         }
-
-
-
     }
 }

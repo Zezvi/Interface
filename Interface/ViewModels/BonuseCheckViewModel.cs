@@ -28,6 +28,12 @@ namespace PetShop.ViewModels
                 OnPropertyChanged("Bonuses");
             }
         }
+        private int bonus_reduce;
+        public int Bonus_reduce
+        {
+            get { return bonus_reduce; }
+            set { bonus_reduce = value; OnPropertyChanged("Bonus_reduce"); }
+        }
         private List<BonusCard> cards;
 
         private List<string> card_numbers;
@@ -84,6 +90,17 @@ namespace PetShop.ViewModels
                 return _checkCommand;
             }
         }
+        private ICommand _reduceCommand;
+        public ICommand ReduceCommand
+        {
+            get
+            {
+                if (_reduceCommand == null)
+                    _reduceCommand = new RelayCommand(param => ReduceBonus(), null);
+
+                return _reduceCommand;
+            }
+        }
         public void CheckBonuse()
         {
             BonusCard card = cards.FirstOrDefault(n => n.card_number == Card_number);
@@ -99,5 +116,19 @@ namespace PetShop.ViewModels
             }
         }
 
+
+        public void ReduceBonus()
+        {
+            BonusCard card = cards.FirstOrDefault(n => n.card_number == Card_number);
+            if (card != null)
+            {
+                if (Bonus_reduce > 0 && Bonus_reduce <= card.bonus)
+                {
+                    card.bonus -= Bonus_reduce;
+                    cardRepository.Edit(card);
+                    MessageBox.Show("С карты " + card.card_number + "\n Списано " + Bonus_reduce + " бонусов. \n Остаток бонусов по карте составляет : " + card.bonus);
+                }
+            }
+        }
     }
 }

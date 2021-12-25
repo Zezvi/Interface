@@ -7,16 +7,18 @@
 
         xmlns:local="clr-namespace:PetShop.Views.Temp"
         mc:Ignorable="d"
-        Title="Оформление бонусов" Height="192" Width="526.666">
+        Title="Оформление бонусов" Height="326" Width="549.999">
     <Grid Margin="0,0,12,3">
         <Label Content="Введите номер бонусной карты" HorizontalAlignment="Left" Margin="6,9,0,0" VerticalAlignment="Top" Height="36" Width="187"/>
 
-        <ListBox Name="lbTemp" HorizontalAlignment="Left" Height="91" Margin="262,57,0,0" VerticalAlignment="Top" ItemsSource="{Binding Card_numbers}" Width="126"/>
-        <TextBlock Text="{Binding Bonuses}" HorizontalAlignment="Left" Margin="364,14,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="41"/>
-        <Label Content="Бонус" HorizontalAlignment="Left" Margin="315,9,0,0" VerticalAlignment="Top"/>
+        <ListBox Name="lbTemp" HorizontalAlignment="Left" Height="74" Margin="10,50,0,0" VerticalAlignment="Top" ItemsSource="{Binding Card_numbers}" Width="183"/>
+        <TextBlock Text="{Binding Bonuses}" HorizontalAlignment="Left" Margin="273,56,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="65" Height="18"/>
+        <Label Content="Бонусы" HorizontalAlignment="Left" Margin="219,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.483,0.264"/>
         <TextBox HorizontalAlignment="Left" Text="{Binding Card_number}" Height="23" Margin="221,9,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="81"/>
 
-        <Button Content="Подтвердить" Command="{Binding CheckCommand}"  IsCancel="True" HorizontalAlignment="Left" Margin="22,57,0,0" VerticalAlignment="Top" Width="190"/>
-
+        <Button Content="Выбрать" Command="{Binding CheckCommand}"  HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="183"/>
+        <Label Content="Количество бонусов к списанию" HorizontalAlignment="Left" Margin="7,191,0,0" VerticalAlignment="Top" Height="29" Width="195"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Bonus_reduce}" Height="23" Margin="228,191,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="81"/>
+        <Button Content="Списать" Command="{Binding ReduceCommand}"  IsCancel="True" HorizontalAlignment="Left" Margin="7,239,0,0" VerticalAlignment="Top" Width="183"/>
     </Grid>
 </Window>

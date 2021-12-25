@@ -38,12 +38,12 @@
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер" Binding="{Binding Path=Good_id}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_id}" Width="100"  IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_name}" Width="100"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" Width="112" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="100" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Доступное количество" Binding="{Binding Path=Count_stock}" Width="180" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Годен до " Binding="{Binding Path=Shelf_life}" Width="80" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Поставщик " Binding="{Binding Path=Supplier_id}" Width="125" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Поставщик " Binding="{Binding Path=Supplier_name}" Width="125" IsReadOnly="True"/>
 
 
                     <DataGridTemplateColumn Width="100">

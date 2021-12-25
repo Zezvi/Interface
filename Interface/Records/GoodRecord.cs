@@ -71,7 +71,20 @@ namespace PetShop.Records
             get { return category_id; }
             set { category_id = value; OnPropertyChanged("Category_id"); }
         }
+        private string category_name;
+        public string Category_name
+        {
+            get { return category_name; }
+            set { category_name = value; OnPropertyChanged("Category_name"); }
+        }
 
+
+        private string suplier_name;
+        public string Supplier_name
+        {
+            get { return suplier_name; }
+            set { suplier_name = value; OnPropertyChanged("Supplier_name"); }
+        }
         private int? supplier_id;
 
         public int? Supplier_id

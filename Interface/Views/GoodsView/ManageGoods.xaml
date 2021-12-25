@@ -45,11 +45,11 @@
                 <Label Content="Категория" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
                        Grid.Row="5" Grid.Column="0" />
                 <TextBox Grid.Row="5" Grid.Column="1"  Height="27" 
-                       Text="{Binding Path=GoodRecord.Category_id, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
+                       Text="{Binding Path=GoodRecord.Category_name, Mode=TwoWay}" IsReadOnly="True" Margin="5" Width="300" HorizontalAlignment="Left"/>
                 <Label Content="Поставщик" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
                        Grid.Row="6" Grid.Column="0" />
                 <TextBox Grid.Row="6" Grid.Column="1"  Height="27" 
-                       Text="{Binding Path=GoodRecord.Supplier_id, Mode=TwoWay}" Margin="5" Width="300" HorizontalAlignment="Left"/>
+                       Text="{Binding Path=GoodRecord.Supplier_name, Mode=TwoWay}" IsReadOnly="True" Margin="5" Width="300" HorizontalAlignment="Left"/>
                 <Button Content="Выбрать поставщика"  Command="{Binding SupplierCommand}" Grid.Row="6" Grid.Column="1"  Height="30" Margin="325,9,165,6"/>
                 <Button Content="Выбрать категорию"  Command="{Binding CategoryCommand}" Grid.Row="5" Grid.Column="1"  Height="30" Margin="325,7,165,7"/>
                 <Label Content="Количество" HorizontalAlignment="Left" VerticalContentAlignment="Center" 
@@ -75,8 +75,8 @@
                     <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count_stock}" Width="80" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" Width="125" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Срок годности" Binding="{Binding Path=Shelf_life}" Width="180" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_id}" Width="80" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Supplier_id}" Width="125" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_name}" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Поставщик" Binding="{Binding Path=Supplier_name}" Width="125" IsReadOnly="True"/>
                     <DataGridTemplateColumn Width="100">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

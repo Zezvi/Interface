@@ -50,6 +50,13 @@ namespace PetShop.Records
                 OnPropertyChanged("Bonus_card_id");
             }
         }
+        private string bonus_card_name;
+        public string Bonus_card_num
+        {
+            get { return bonus_card_name; }
+            set { bonus_card_name = value; OnPropertyChanged("Bonus_card_name"); }
+        }
+
         private int? user_id;
         public int? User_id
         {
@@ -60,6 +67,12 @@ namespace PetShop.Records
 
                 OnPropertyChanged("User_id");
             }
+        }
+        private string user_name;
+        public string User_name
+        {
+            get { return user_name; }
+            set { user_name = value; OnPropertyChanged("User_name"); }
         }
         private ObservableCollection<CheckRecord> checkRecords;
         public ObservableCollection<CheckRecord> CheckRecords

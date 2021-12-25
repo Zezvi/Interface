@@ -19,10 +19,11 @@ namespace PetShop.ViewModels
 		private ICommand _resetCommand;
 		private ICommand _editCommand;
 		private ICommand _deleteCommand;
-
 		private ICommand _supplierCommand;
 		private ICommand _categoryCommand;
-		private GoodsRepository repository;
+		private GoodsRepository goodRepository;
+		private SupplierRepository supplierRepository;
+		private CategoryRepository categoryRepository;
 		private Good good = null;
 		public GoodRecord GoodRecord { get; set; }
 
@@ -119,7 +120,9 @@ namespace PetShop.ViewModels
 		public GoodViewModel()
 		{
 			good = new Good();
-			repository = new GoodsRepository();
+			goodRepository = new GoodsRepository();
+			categoryRepository = new CategoryRepository();
+			supplierRepository = new SupplierRepository();
 			GoodRecord = new GoodRecord();
 			GetAll();
 		}
@@ -143,7 +146,7 @@ namespace PetShop.ViewModels
 			{
 				try
 				{
-					repository.Remove(id);
+					goodRepository.Remove(id);
 					MessageBox.Show("Запись успешно удалена.");
 				}
 				catch (Exception ex)
@@ -174,13 +177,13 @@ namespace PetShop.ViewModels
 				{
 					if (GoodRecord.Good_id <= 0)
 					{
-						repository.Add(good);
+						goodRepository.Add(good);
 						MessageBox.Show("Новая запись успешно добавлена");
 					}
 					else
 					{
 						good.good_id = GoodRecord.Good_id;
-						repository.Edit(good);
+						goodRepository.Edit(good);
 						MessageBox.Show("Запись успешно обновлена");
 					}
 				}
@@ -196,17 +199,19 @@ namespace PetShop.ViewModels
 			}
 		}
 
-
-
 		public void EditData(int id)
 		{
-			var good = repository.GetOne(id);
+			List<Supplier> suppliers = supplierRepository.Get();
+			List<Category> categories = categoryRepository.Get();
+			var good = goodRepository.GetOne(id);
 			GoodRecord.Good_id = good.good_id;
 			GoodRecord.Name = good.name;
 			GoodRecord.Price = good.price;
 			GoodRecord.Category_id = good.category_id;
+			GoodRecord.Category_name = categories.FirstOrDefault(n => n.category_id == good.category_id).name;
 			GoodRecord.Count_stock = good.count_stock;
 			GoodRecord.Supplier_id = good.supplier_id;
+			GoodRecord.Supplier_name = suppliers.FirstOrDefault(n => n.supplier_id == good.supplier_id).name;
 			GoodRecord.Shelf_life = good.shelf_life;
 			GoodRecord.Description = good.description;
 
@@ -215,38 +220,51 @@ namespace PetShop.ViewModels
 		public void GetAll()
 		{
 			GoodRecord.GoodRecords = new ObservableCollection<GoodRecord>();
-			repository.Get().ForEach(data => GoodRecord.GoodRecords.Add(new GoodRecord()
-			{
-				Good_id = data.good_id,
-				Description = data.description,
-				Category_id = data.category_id,
-				Supplier_id = data.supplier_id,
-				Count_stock = data.count_stock,
-				Name = data.name,
-				Price = data.price,
-				Shelf_life = data.shelf_life
 
-			}));
+			List<Supplier> suppliers = supplierRepository.Get();
+			List<Category> categories = categoryRepository.Get();
+			List<Good> goods = goodRepository.Get();
+			foreach (var item in goods)
+			{
+				GoodRecord goodRecord = new GoodRecord();
+				goodRecord.Good_id = item.good_id;
+
+				goodRecord.Description = item.description;
+				Category cat = categories.FirstOrDefault(n => n.category_id == item.category_id);
+				if (cat != null) goodRecord.Category_name = cat.name;
+				goodRecord.Supplier_id = item.supplier_id;
+				Supplier sup = suppliers.FirstOrDefault(n => n.supplier_id == item.supplier_id);
+				if (sup != null) goodRecord.Supplier_name = sup.name;
+				goodRecord.Count_stock = item.count_stock;
+				goodRecord.Name = item.name;
+				goodRecord.Price = item.price;
+				goodRecord.Shelf_life = item.shelf_life;
+				GoodRecord.GoodRecords.Add(goodRecord);
+			}
 		}
 		public void GetCategory()
 		{
+			List<Category> categories = categoryRepository.Get();
 			GetCategoryForm getCategoryForm = new GetCategoryForm();
 			if (getCategoryForm.ShowDialog() == true)
 			{
 				if (getCategoryForm.Category_id > 0)
 				{
 					GoodRecord.Category_id = getCategoryForm.Category_id;
+					GoodRecord.Category_name = categories.FirstOrDefault(n => n.category_id == getCategoryForm.Category_id).name;
 				}
 			}
 		}
 		public void GetSupplier()
 		{
+			List<Supplier> suppliers = supplierRepository.Get();
 			GetSupplierForm getSupplierForm = new GetSupplierForm();
 			if (getSupplierForm.ShowDialog() == true)
 			{
 				if (getSupplierForm.Supplier_id > 0)
 				{
 					GoodRecord.Supplier_id = getSupplierForm.Supplier_id;
+					GoodRecord.Supplier_name = suppliers.FirstOrDefault(n => n.supplier_id == getSupplierForm.Supplier_id).name;
 				}
 			}
 		}

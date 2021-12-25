@@ -8,6 +8,7 @@ using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Windows;
 using System.Windows.Input;
+using System.Linq;
 
 namespace PetShop.ViewModels
 {
@@ -21,6 +22,8 @@ namespace PetShop.ViewModels
         private GoodsRepository goodRepository;
         private CheckRepository checkRepository;
         private ActionRepository actionRepository;
+        private CategoryRepository categoryRepository;
+        private SupplierRepository supplierRepository;
 
         private DateTime datePurchase;
         public DateTime DatePurchase
@@ -102,6 +105,8 @@ namespace PetShop.ViewModels
             PurchaseRecord = new PurchaseRecord();
             checkRepository = new CheckRepository();
             actionRepository = new ActionRepository();
+            supplierRepository = new SupplierRepository();
+            categoryRepository = new CategoryRepository();
             current = user;
             GetAll();
         }
@@ -115,19 +120,27 @@ namespace PetShop.ViewModels
 
         public void GetAll()
         {
-            GoodRecord.GoodRecords = new ObservableCollection<GoodRecord>();
-            goodRepository.Get().ForEach(data => GoodRecord.GoodRecords.Add(new GoodRecord()
-            {
-                Good_id = data.good_id,
-                Description = data.description,
-                Category_id = data.category_id,
-                Supplier_id = data.supplier_id,
-                Count_stock = data.count_stock,
-                Name = data.name,
-                Price = data.price,
-                Shelf_life = data.shelf_life
 
-            }));
+            GoodRecord.GoodRecords = new ObservableCollection<GoodRecord>();
+            List<Supplier> suppliers = supplierRepository.Get();
+            List<Category> categories = categoryRepository.Get();
+            List<Good> goods = goodRepository.Get();
+            foreach (var item in goods)
+            {
+                GoodRecord goodRecord = new GoodRecord();
+                goodRecord.Good_id = item.good_id;
+                goodRecord.Description = item.description;
+                Category category = categories.FirstOrDefault(n => n.category_id == item.category_id);
+                if (category != null) goodRecord.Category_name = category.name;
+                goodRecord.Supplier_id = item.supplier_id;
+                Supplier sup = suppliers.FirstOrDefault(n => n.supplier_id == item.supplier_id);
+                if (sup != null) goodRecord.Supplier_name = sup.name;
+                goodRecord.Count_stock = item.count_stock;
+                goodRecord.Name = item.name;
+                goodRecord.Price = item.price;
+                goodRecord.Shelf_life = item.shelf_life;
+                GoodRecord.GoodRecords.Add(goodRecord);
+            }
         }
 
         public void PurchaseGood()
@@ -260,7 +273,7 @@ namespace PetShop.ViewModels
 
             if (bonuseCheckViewModel.Bonuses > 0)
             {
-                Bonuse = bonuseCheckViewModel.Bonuses;
+                Bonuse = bonuseCheckViewModel.Bonus_reduce;
                 bonuse_card_id = (int)bonuseCheckViewModel.Bonuse_card_id;
             }
 

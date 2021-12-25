@@ -105,7 +105,6 @@ namespace PetShop.ViewModels
 			CheckRecord.Total_price = 0;
 		}
 
-
 		void BestSeller()
 		{
 			GetAll();
@@ -124,14 +123,25 @@ namespace PetShop.ViewModels
 		public void GetAll()
 		{
 			CheckRecord.CheckRecords = new ObservableCollection<CheckRecord>();
-			checkRepository.Get().ForEach(data => CheckRecord.CheckRecords.Add(new CheckRecord()
+			List<User> users = userRepository.Get();
+			List<BonusCard> bonusCards = bonusRepository.Get();
+			List<Check> checks = checkRepository.Get();
+
+			foreach (var item in checks)
 			{
-				Check_id = data.check_id,
-				Bonus_card_id = data.bonus_card_id,
-				Date_sale = data.date_sale,
-				User_id = data.user_id,
-				Total_price = data.total_price
-			}));
+				CheckRecord checkRecord = new CheckRecord();
+				checkRecord.Check_id = item.check_id;
+				checkRecord.Bonus_card_id = item.bonus_card_id;
+				BonusCard card = bonusCards.FirstOrDefault(n => n.bonus_card_id == item.bonus_card_id);
+				if (card != null) checkRecord.Bonus_card_num = card.card_number;
+				checkRecord.Date_sale = item.date_sale;
+				checkRecord.User_id = item.user_id;
+				User user = users.FirstOrDefault(n => n.user_id == item.user_id);
+				if (user != null) checkRecord.User_name = user.fio;
+				checkRecord.Total_price = item.total_price;
+				CheckRecord.CheckRecords.Add(checkRecord);
+			}
+
 		}
 		public void FilterTotal()
 		{

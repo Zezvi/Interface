@@ -23,6 +23,9 @@ namespace PetShop.Views.PurchaseView
 
         }
 
+        private void Purchases_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
 
+        }
     }
 }

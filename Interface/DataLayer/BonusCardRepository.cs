@@ -2,8 +2,6 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PetShop.DataLayer
 {
@@ -67,7 +65,6 @@ namespace PetShop.DataLayer
             try
             {
                 BonusCard temp = context.BonusCard.FirstOrDefault(n => n.bonus_card_id == bc.bonus_card_id);
-                temp = bc;
                 temp.bonus_card_id = bc.bonus_card_id;
                 temp.card_number = bc.card_number;
                 temp.bonus = bc.bonus;
@@ -78,8 +75,6 @@ namespace PetShop.DataLayer
             {
                 return false;
             }
-
-
         }
         public bool Remove(int bc)
         {
