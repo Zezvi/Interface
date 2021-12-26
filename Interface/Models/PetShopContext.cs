@@ -15,10 +15,7 @@ namespace PetShop.Models
             modelBuilder.Entity<Category>().ToTable("Category");
             modelBuilder.Entity<Check>().ToTable("Check");
             modelBuilder.Entity<Good>().ToTable("Good");
-            modelBuilder.Entity<Line_check>().ToTable("Line_check");
-            modelBuilder.Entity<Line_supply>().ToTable("Line_supply");
             modelBuilder.Entity<Supplier>().ToTable("Supplier");
-            modelBuilder.Entity<Supply>().ToTable("Supply");
             modelBuilder.Entity<User>().ToTable("User");
 
         }
@@ -27,10 +24,7 @@ namespace PetShop.Models
         public virtual DbSet<Category> Category { get; set; }
         public virtual DbSet<Check> Check { get; set; }
         public virtual DbSet<Good> Good { get; set; }
-        public virtual DbSet<Line_check> Line_check { get; set; }
-        public virtual DbSet<Line_supply> Line_supply { get; set; }
         public virtual DbSet<Supplier> Supplier { get; set; }
-        public virtual DbSet<Supply> Supply { get; set; }
         public virtual DbSet<User> User { get; set; }
 
     }
