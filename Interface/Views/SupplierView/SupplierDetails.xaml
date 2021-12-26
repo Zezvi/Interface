@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.SupplierView"
         mc:Ignorable="d"
-        Title="SupplierDetails" Height="481.89" Width="640.551">
+        Title="SupplierDetails" Height="481.89" Width="651.429">
     <StackPanel Orientation="Vertical" Margin="0,0,2,0">
         <GroupBox Header="Форма поставщика" Margin="10">
             <Grid Height="150">
@@ -35,8 +35,8 @@
         <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
             <Button  Content="Сохранить" Height="30" Width="143"
                     Command="{Binding SaveCommand}" Margin="0,5"/>
-            <Button  Content="Отмена" Height="30" Width="80" 
-                    Command="{Binding ResetCommand}" Margin="5,0,10,0"/>
+            <Button  Content="Отмена" Height="30" Width="92" 
+                    Command="{Binding ResetCommand}" Margin="5,5,10,5"/>
         </StackPanel>
         <StackPanel Height="170">
             <DataGrid  
@@ -46,7 +46,7 @@
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Телефон" Binding="{Binding Path=PhoneNumber}" Width="150"  IsReadOnly="True"/>
 
-                    <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Выбрать" CommandParameter="{Binding Path=Supplier_id}"
@@ -55,7 +55,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Удалить"  CommandParameter="{Binding Path=Supplier_id}"

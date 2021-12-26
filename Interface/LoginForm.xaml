@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop"
         mc:Ignorable="d"
-        Title="Форма входа" Height="188" Width="276">
+        Title="Форма входа" Height="413" Width="535.6">
     <Grid Margin="0,10,2,2">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="106*"/>
-            <ColumnDefinition Width="161*"/>
+            <ColumnDefinition Width="19*"/>
+            <ColumnDefinition Width="47*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="Логин" HorizontalAlignment="Left" Margin="22,18,0,0" VerticalAlignment="Top" Width="87" Height="28" RenderTransformOrigin="0.034,0.204" Grid.ColumnSpan="2"/>
-        <Label Content="Пароль" HorizontalAlignment="Left" Margin="22,59,0,0" VerticalAlignment="Top" Width="87" Height="28" RenderTransformOrigin="0.034,0.204" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Login}" HorizontalAlignment="Left" Margin="98,23,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <TextBox Text="{Binding Password}" HorizontalAlignment="Left" Margin="98,64,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" Grid.ColumnSpan="2"/>
-        <Button Command="{Binding InputCommand}"  Grid.ColumnSpan="2" Content="Button" HorizontalAlignment="Left" Margin="98,104,0,0" VerticalAlignment="Top" Width="75"/>
+        <Label Content="Логин" HorizontalAlignment="Left" Margin="21,64,0,0" VerticalAlignment="Top" Width="131" Height="55" RenderTransformOrigin="0.034,0.204" FontSize="24"/>
+        <Label Content="Пароль" HorizontalAlignment="Left" Margin="21,176,0,0" VerticalAlignment="Top" Width="131" Height="56" RenderTransformOrigin="0.034,0.204" FontSize="24"/>
+        <TextBox Text="{Binding Login}" HorizontalAlignment="Left" Margin="5,77,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Height="55" Grid.Column="1" FontSize="24"/>
+        <TextBox Text="{Binding Password}" HorizontalAlignment="Left" Margin="5,181,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="236" Grid.Column="1" Height="51" FontSize="24"/>
+        <Button Command="{Binding InputCommand}" Content="Войти" HorizontalAlignment="Left" Margin="0,277,0,0" VerticalAlignment="Top" Width="241" Click="Button_Click" Grid.Column="1" Height="60" FontSize="24"/>
 
     </Grid>
 </Window>

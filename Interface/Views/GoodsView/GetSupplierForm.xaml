@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.GoodsView"
         mc:Ignorable="d"
-       Title="GetCategoryForm" Height="188.976" Width="293.306">
+       Title="GetCategoryForm" Height="202.501" Width="293.306">
     <StackPanel Orientation="Vertical" Margin="0,0,2,-21">
 
-        <StackPanel Height="100">
-            <DataGrid Name="greedSup" AutoGenerateColumns="False" CanUserAddRows="False" Height="100" Margin="10">
+        <StackPanel Height="107" Margin="0,0,-0.4,0">
+            <DataGrid Name="greedSup" AutoGenerateColumns="False" CanUserAddRows="False" Height="100" Margin="10,10,9.6,10">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=supplier_id}" Width="30" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=name}" Width="100"  IsReadOnly="True"/>

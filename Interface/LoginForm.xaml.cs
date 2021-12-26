@@ -29,6 +29,9 @@ namespace PetShop
             this.DataContext = new LoginViewModel();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
 
+        }
     }
 }

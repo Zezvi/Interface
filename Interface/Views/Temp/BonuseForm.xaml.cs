@@ -21,5 +21,9 @@ namespace PetShop.Views.Temp
             DataContext = new BonuseCheckViewModel();
         }
 
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PetShop.Views.UserView"
         mc:Ignorable="d"
        Title="Управление  пользователями"
-        Height="579.333" Width="623.333">
+        Height="579.333" Width="637.733">
     <StackPanel Orientation="Vertical">
         <GroupBox Header="Форма пользователя" Margin="10">
             <Grid Height="150">
@@ -44,21 +44,21 @@
             </Grid>
         </GroupBox>
         <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button  Content="Сохранить" Height="30" Width="131"
+            <Button  Content="Сохранить" Height="30" Width="133"
                     Command="{Binding SaveCommand}" Margin="0,5"/>
-            <Button  Content="Отмена" Height="30" Width="80" 
-                    Command="{Binding ResetCommand}" Margin="5,0,10,0"/>
+            <Button  Content="Отмена" Height="30" Width="96" 
+                    Command="{Binding ResetCommand}" Margin="5,5,10,5"/>
         </StackPanel>
         <StackPanel Height="210">
             <DataGrid  
-                      ItemsSource="{Binding UserRecord.UserRecords}" CanUserAddRows="False" Height="200" Margin="10">
+                      ItemsSource="{Binding UserRecord.UserRecords}" AutoGenerateColumns="False" CanUserAddRows="False" Height="200" Margin="10">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="Номер" Binding="{Binding Path=User_id}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Имя" Binding="{Binding Path=Fio}" Width="100"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Логин" Binding="{Binding Path=Login}" Width="100"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Пароль" Binding="{Binding Path=Password}" Width="100" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Роль" Binding="{Binding Path=Role}" Width="100" IsReadOnly="True"/>
-                    <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Выбрать" CommandParameter="{Binding Path=User_id}"
@@ -67,7 +67,7 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Удалить"  CommandParameter="{Binding Path=User_id}"

@@ -9,16 +9,16 @@
         mc:Ignorable="d"
         Title="Оформление бонусов" Height="326" Width="549.999">
     <Grid Margin="0,0,12,3">
-        <Label Content="Введите номер бонусной карты" HorizontalAlignment="Left" Margin="6,9,0,0" VerticalAlignment="Top" Height="36" Width="187"/>
+        <Label Content="Введите номер бонусной карты" HorizontalAlignment="Left" Margin="6,9,0,0" VerticalAlignment="Top" Height="36" Width="220" FontSize="14"/>
 
-        <ListBox Name="lbTemp" HorizontalAlignment="Left" Height="74" Margin="10,50,0,0" VerticalAlignment="Top" ItemsSource="{Binding Card_numbers}" Width="183"/>
-        <TextBlock Text="{Binding Bonuses}" HorizontalAlignment="Left" Margin="273,56,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="65" Height="18"/>
-        <Label Content="Бонусы" HorizontalAlignment="Left" Margin="219,50,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.483,0.264"/>
-        <TextBox HorizontalAlignment="Left" Text="{Binding Card_number}" Height="23" Margin="221,9,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="81"/>
+        <ListBox Name="lbTemp" HorizontalAlignment="Left" Height="136" Margin="10,50,0,0" VerticalAlignment="Top" ItemsSource="{Binding Card_numbers}" Width="183" FontSize="14"/>
+        <TextBlock Text="{Binding Bonuses}" HorizontalAlignment="Left" Margin="291,67,0,0" TextWrapping="Wrap"  VerticalAlignment="Top" Width="77" Height="18" FontSize="14" RenderTransformOrigin="0.506,0.508"/>
+        <Label Content="Бонусы" HorizontalAlignment="Left" Margin="219,59,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.518,0.606" FontSize="14" Height="26"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Card_number}" Height="25" Margin="247,10,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="107" FontSize="14"/>
 
-        <Button Content="Выбрать" Command="{Binding CheckCommand}"  HorizontalAlignment="Left" Margin="10,138,0,0" VerticalAlignment="Top" Width="183"/>
-        <Label Content="Количество бонусов к списанию" HorizontalAlignment="Left" Margin="7,191,0,0" VerticalAlignment="Top" Height="29" Width="195"/>
-        <TextBox HorizontalAlignment="Left" Text="{Binding Bonus_reduce}" Height="23" Margin="228,191,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="81"/>
-        <Button Content="Списать" Command="{Binding ReduceCommand}"  IsCancel="True" HorizontalAlignment="Left" Margin="7,239,0,0" VerticalAlignment="Top" Width="183"/>
+        <Button Content="Подтвердить номер карты" Command="{Binding CheckCommand}"  HorizontalAlignment="Left" Margin="208,114,0,0" VerticalAlignment="Top" Width="214" Click="Button_Click" RenderTransformOrigin="0.886,0.469"/>
+        <Label Content="Количество бонусов к списанию" HorizontalAlignment="Left" Margin="7,191,0,0" VerticalAlignment="Top" Height="29" Width="219" FontSize="14"/>
+        <TextBox HorizontalAlignment="Left" Text="{Binding Bonus_reduce}" Height="29" Margin="247,191,0,0" TextWrapping="Wrap"   VerticalAlignment="Top" Width="107" FontSize="14"/>
+        <Button Content="Списать" Command="{Binding ReduceCommand}"  IsCancel="True" HorizontalAlignment="Left" Margin="208,239,0,0" VerticalAlignment="Top" Width="183"/>
     </Grid>
 </Window>

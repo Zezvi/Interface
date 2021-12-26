@@ -5,16 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop"
         mc:Ignorable="d"
-        Title="Меню" Height="361" Width="252">
+        Title="Меню" Height="413" Width="521.2">
 
-    <Grid Background="GreenYellow"  Margin="0,0,2,3">
-        <Button Content="Оформление покупки" Command="{Binding PurchaseCommand}" HorizontalAlignment="Left" Margin="12,9,0,0" VerticalAlignment="Top"  Width="212"/>
-        <Button Content="Поставщики" Command="{Binding SupplierCommand}" HorizontalAlignment="Left" Margin="12,48,0,0" VerticalAlignment="Top" Width="212" RenderTransformOrigin="1.28,2.15"/>
-        <Button Content="Товары" Command="{Binding GoodCommand}" HorizontalAlignment="Left" Margin="12,89,0,0" VerticalAlignment="Top" Width="212" />
-        <Button Content="Акции" Command="{Binding ActionCommand}" HorizontalAlignment="Left" Margin="12,132,0,0" VerticalAlignment="Top" Width="212"/>
-        <Button Content="Бонусные карты" Command="{Binding BonusCommand}"  HorizontalAlignment="Left" Margin="12,173,0,0" VerticalAlignment="Top" Width="212"/>
-        <Button Content="Продажи" Command="{Binding CheckCommand}" HorizontalAlignment="Left" Margin="12,212,0,0" VerticalAlignment="Top" Width="212"/>
-        <Button Content="Пользователи" Command="{Binding UserCommand}"  HorizontalAlignment="Left" Margin="12,262,0,0" VerticalAlignment="Top"  Width="212"/>
+    <Grid Background="White"  Margin="0,0,34.6,-0.8">
+        <Button Content="Оформление покупки" Command="{Binding PurchaseCommand}" HorizontalAlignment="Left" Margin="142,10,0,0" VerticalAlignment="Top"  Width="212" Height="35"/>
+        <Button Content="Поставщики" Command="{Binding SupplierCommand}" HorizontalAlignment="Left" Margin="142,61,0,0" VerticalAlignment="Top" Width="212" RenderTransformOrigin="1.28,2.15" Height="34"/>
+        <Button Content="Товары" Command="{Binding GoodCommand}" HorizontalAlignment="Left" Margin="142,110,0,0" VerticalAlignment="Top" Width="212" Height="35" />
+        <Button Content="Акции" Command="{Binding ActionCommand}" HorizontalAlignment="Left" Margin="142,162,0,0" VerticalAlignment="Top" Width="212" Height="35"/>
+        <Button Content="Бонусные карты" Command="{Binding BonusCommand}"  HorizontalAlignment="Left" Margin="142,213,0,0" VerticalAlignment="Top" Width="212" Height="36"/>
+        <Button Content="Продажи" Command="{Binding CheckCommand}" HorizontalAlignment="Left" Margin="142,263,0,0" VerticalAlignment="Top" Width="212" Height="35"/>
+        <Button Content="Пользователи" Command="{Binding UserCommand}"  HorizontalAlignment="Left" Margin="142,312,0,0" VerticalAlignment="Top"  Width="212" Height="38"/>
 
     </Grid>
 </Window>

@@ -14,8 +14,8 @@
                 <DataGridTextColumn Header="Дата продажи" Binding="{Binding Path=Date_sale}" Width="180"  IsReadOnly="True"/>
                 <DataGridTextColumn Header="Стоимость покупки" Binding="{Binding Path=Total_price}" Width="180"  IsReadOnly="True"/>
                 <DataGridTextColumn Header="Бонусная карта" Binding="{Binding Path=Bonus_card_id}" Width="150"  IsReadOnly="True"/>
-                <DataGridTextColumn Header="Продавец" Binding="{Binding Path=User_id}" Width="150"  IsReadOnly="True"/>
-                <DataGridTemplateColumn Width="100">
+                <DataGridTextColumn Header="Продавец" Binding="{Binding Path=User_name}" Width="150"  IsReadOnly="True"/>
+                <DataGridTemplateColumn Width="140">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Подробнее" CommandParameter="{Binding Path=Check_id}"
@@ -24,7 +24,7 @@
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
-                <DataGridTemplateColumn Width="100">
+                <DataGridTemplateColumn Width="118">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <Button Content="Удалить"  CommandParameter="{Binding Path=Check_id}"

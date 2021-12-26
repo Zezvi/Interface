@@ -109,7 +109,6 @@
     <Compile Include="Models\Line_check.cs" />
     <Compile Include="Models\Line_supply.cs" />
     <Compile Include="Models\PetShopContext.cs" />
-    <Compile Include="Models\Purchase.cs" />
     <Compile Include="Models\Supplier.cs" />
     <Compile Include="Models\Supply.cs" />
     <Compile Include="Models\User.cs" />

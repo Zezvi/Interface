@@ -16,7 +16,7 @@ namespace PetShop.Records
         public int? Bonus
         {
             get { return bonus; }
-            set { bonus = value; OnPropertyChanged("Bonuse"); }
+            set { bonus = value; OnPropertyChanged("Bonus"); }
         }
         private string card_number;
         public string Card_number
@@ -34,7 +34,7 @@ namespace PetShop.Records
             set
             {
                 bonusRecords = value;
-                OnPropertyChanged("BonuseRecords");
+                OnPropertyChanged("BonusRecords");
             }
         }
 

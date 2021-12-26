@@ -82,7 +82,7 @@ namespace PetShop.ViewModels
 
 		public void DeleteBonuse(int id)
 		{
-			if (MessageBox.Show("Подтверждаете удаение пользователя?", "BonuseCard", MessageBoxButton.YesNo)
+			if (MessageBox.Show("Подтверждаете удаление пользователя?", "BonuseCard", MessageBoxButton.YesNo)
 				== MessageBoxResult.Yes)
 			{
 				try
@@ -128,7 +128,7 @@ namespace PetShop.ViewModels
 				}
 				catch (Exception ex)
 				{
-					MessageBox.Show("Возникла ошибка при сохранении запсиси " + ex.InnerException);
+					MessageBox.Show("Возникла ошибка при сохранении записи " + ex.InnerException);
 				}
 				finally
 				{

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.PurchaseView" xmlns:records="clr-namespace:PetShop.Records" d:DataContext="{d:DesignInstance Type=records:PurchaseRecord}"
         mc:Ignorable="d"
-        Title="MakePurchase" Height="624.667" Width="1069">
+        Title="MakePurchase" Height="624.667" Width="1132.6">
     <StackPanel Orientation="Vertical" Margin="0,0,2,-8">
         <DataGrid x:Name="Purchases" ItemsSource="{Binding PurchaseRecord.PurchaseRecords}" CanUserAddRows="False" AutoGenerateColumns="False" Height="188" Margin="10">
             <DataGrid.Columns>
@@ -15,21 +15,20 @@
                 <DataGridTextColumn Header="Количество" Binding="{Binding Path=Count}" Width="180" IsReadOnly="True"/>
             </DataGrid.Columns>
         </DataGrid>
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="243,0,144.8,10" Width="673">
 
-        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="179,0,80,10" Width="673">
-
-            <Label Content="Итого" Margin="20,0,20,0"/>
-            <TextBlock TextWrapping="Wrap" Height="30" Width="82" Text="{Binding TotalCost }" Margin="20,5,30,5"/>
-            <DatePicker SelectedDate="{Binding DatePurchase}" Height="30" Width="138" Margin="5,5,3,5"/>
-            <Button  Content="Оформить" Height="30" Width="140"
-                    Command="{Binding PurchaseCommand}" Margin="5,5"/>
-            <Button  Content="Отмена" Height="30" Width="103" 
+            <Label Content="ИТОГО" Margin="20,0,20,0" Width="69" FontSize="16"/>
+            <TextBlock TextWrapping="Wrap" Height="30" Width="69" Text="{Binding TotalCost}" Margin="-10,5,30,5" FontSize="16" RenderTransformOrigin="0.508,0.447"/>
+            <DatePicker SelectedDate="{Binding DatePurchase}" Height="30" Width="134" Margin="5,5,3,5" FontSize="14" DisplayDate="2021-12-27"/>
+            <Button  Content="Оформить" Height="30" Width="108"
+                    Command="{Binding PurchaseCommand}" Margin="15,5" RenderTransformOrigin="0.685,0.527"/>
+            <Button  Content="Отмена" Height="30" Width="102" 
                     Command="{Binding ResetCommand}" Margin="10,5,10,5"/>
         </StackPanel>
-        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="303,0,10,30" Width="479">
-            <Label Content="Бонусы" Margin="20,0,20,0"/>
-            <TextBlock TextWrapping="Wrap" Height="30" Width="80" Text="{Binding Bonuse}" Margin="15,0,25,0"/>
-            <Button  Content="Ввести номер бонусной карты " Height="30" Width="233"
+        <StackPanel Height="40" Orientation="Horizontal" HorizontalAlignment="Center" Margin="359,0,144.8,30" Width="557">
+            <Label Content="Бонусы" Margin="20,0,20,0" FontSize="16"/>
+            <TextBlock TextWrapping="Wrap" Height="30" Width="80" Text="{Binding Bonuse}" Margin="1,0,25,0" FontSize="16"/>
+            <Button  Content="Ввести номер бонусной карты " Height="30" Width="235"
                 Command="{Binding BonuseCommand}" Margin="30,5"/>
         </StackPanel>
         <StackPanel Height="229">
@@ -39,14 +38,14 @@
                     <DataGridTextColumn Header="Номер" Binding="{Binding Path=Good_id}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=Name}" Width="100"  IsReadOnly="True"/>
                     <DataGridTextColumn Header="Категория" Binding="{Binding Path=Category_name}" Width="100"  IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" Width="112" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Описание" Binding="{Binding Path=Description}" Width="160" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Стоимость" Binding="{Binding Path=Price}" Width="100" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Доступное количество" Binding="{Binding Path=Count_stock}" Width="180" IsReadOnly="True"/>
-                    <DataGridTextColumn Header="Годен до " Binding="{Binding Path=Shelf_life}" Width="80" IsReadOnly="True"/>
+                    <DataGridTextColumn Header="Годен до " Binding="{Binding Path=Shelf_life}" Width="105" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Поставщик " Binding="{Binding Path=Supplier_name}" Width="125" IsReadOnly="True"/>
 
 
-                    <DataGridTemplateColumn Width="100">
+                    <DataGridTemplateColumn Width="120">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <Button Content="Выбрать" CommandParameter="{Binding Path=Good_id}"

@@ -5,17 +5,17 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.GoodsView"
         mc:Ignorable="d"
-        Title="GetCategoryForm" Height="231.496" Width="373.621">
+        Title="GetCategoryForm" Height="243.862" Width="373.621">
     <StackPanel Orientation="Vertical" Margin="0,0,2,-21">
 
-        <StackPanel Height="140">
-            <DataGrid Name="greedCat" AutoGenerateColumns="False" CanUserAddRows="False" Height="140" Margin="10">
+        <StackPanel Height="142" Margin="0,0,-0.4,0">
+            <DataGrid Name="greedCat" AutoGenerateColumns="False" CanUserAddRows="False" Height="133" Margin="10,10,9.6,10">
                 <DataGrid.Columns>
                     <DataGridTextColumn Header="№" Binding="{Binding Path=category_id}"  Width="30" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Название" Binding="{Binding Path=name}" Width="100"  IsReadOnly="True"/>
                 </DataGrid.Columns>
             </DataGrid>
         </StackPanel>
-        <Button Content="Выбрать" Margin="40,20,40,40" Click="Button_Click"/>
+        <Button Content="Выбрать" Margin="40,20,39.6,40" Click="Button_Click" Height="36"/>
     </StackPanel>
 </Window>

@@ -5,11 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PetShop.Views.Temp"
         mc:Ignorable="d"
-        Title="CountForm" Height="136" Width="354">
-    <Grid Margin="0,0,0,3">
-        <Label Content="Укажите количество товара" HorizontalAlignment="Left" Margin="24,15,0,0" VerticalAlignment="Top" Height="36" Width="167"/>
-        <Button Content="Подтвердить" IsCancel="True"  HorizontalAlignment="Left" Margin="24,47,0,0" VerticalAlignment="Top" Width="133"/>
-        <TextBox HorizontalAlignment="Left" Height="23" Margin="212,15,0,0" TextWrapping="Wrap" Text="{Binding Count}" VerticalAlignment="Top" Width="120"/>
+        Title="CountForm" Height="176.8" Width="354">
+    <Grid Margin="0,0,0.2,-1.8">
+        <Label Content="Укажите количество товара" HorizontalAlignment="Left" Margin="24,19,0,0" VerticalAlignment="Top" Height="36" Width="188" FontSize="14"/>
+        <Button Content="Подтвердить" IsCancel="True"  HorizontalAlignment="Left" Margin="24,80,0,0" VerticalAlignment="Top" Width="151" Height="41"/>
+        <TextBox HorizontalAlignment="Left" Height="36" Margin="227,19,0,0" TextWrapping="Wrap" Text="{Binding Count}" VerticalAlignment="Top" Width="110" FontSize="14"/>
 
     </Grid>
 </Window>
